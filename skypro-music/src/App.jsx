@@ -1,5 +1,5 @@
-//import './App.css';
-//import React from `react`;
+import "./App.css";
+import React from "react";
 
 function App() {
   return (
@@ -18,13 +18,19 @@ function App() {
             <div class="nav__menu menu">
               <ul class="menu__list">
                 <li class="menu__item">
-                  <a href="#" class="menu__link">Главное</a>
+                  <a href="#" class="menu__link">
+                    Главное
+                  </a>
                 </li>
                 <li class="menu__item">
-                  <a href="#" class="menu__link">Мой плейлист</a>
+                  <a href="#" class="menu__link">
+                    Мой плейлист
+                  </a>
                 </li>
                 <li class="menu__item">
-                  <a href="../signin.html" class="menu__link">Войти</a>
+                  <a href="../signin.html" class="menu__link">
+                    Войти
+                  </a>
                 </li>
               </ul>
             </div>
@@ -32,7 +38,7 @@ function App() {
           <div class="main__centerblock centerblock">
             <div class="centerblock__search search">
               <svg class="search__svg">
-                <use xlink:href="img/icon/sprite.svg#icon-search"></use>
+                <use xlinkHrefHref="img/icon/sprite.svg#icon-search"></use>
               </svg>
               <input
                 class="search__text"
@@ -59,7 +65,7 @@ function App() {
                 <div class="playlist-title__col col03">АЛЬБОМ</div>
                 <div class="playlist-title__col col04">
                   <svg class="playlist-title__svg" alt="time">
-                    <use xlink:href="img/icon/sprite.svg#icon-watch"></use>
+                    <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
                   </svg>
                 </div>
               </div>
@@ -69,26 +75,28 @@ function App() {
                     <div class="track__title">
                       <div class="track__title-image">
                         <svg class="track__title-svg" alt="music">
-                          <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div class="track__title-text">
-                        <a class="track__title-link" href="http://"
-                          >Guilt <span class="track__title-span"></span
-                        ></a>
+                        <a class="track__title-link" href="http://">
+                          Guilt <span class="track__title-span"></span>
+                        </a>
                       </div>
                     </div>
                     <div class="track__author">
-                      <a class="track__author-link" href="http://">Nero</a>
+                      <a class="track__author-link" href="http://">
+                        Nero
+                      </a>
                     </div>
                     <div class="track__album">
-                      <a class="track__album-link" href="http://"
-                        >Welcome Reality</a
-                      >
+                      <a class="track__album-link" href="http://">
+                        Welcome Reality
+                      </a>
                     </div>
                     <div class="track__time">
                       <svg class="track__time-svg" alt="time">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span class="track__time-text">4:44</span>
                     </div>
@@ -100,26 +108,28 @@ function App() {
                     <div class="track__title">
                       <div class="track__title-image">
                         <svg class="track__title-svg" alt="music">
-                          <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div class="track__title-text">
-                        <a class="track__title-link" href="http://"
-                          >Elektro <span class="track__title-span"></span
-                        ></a>
+                        <a class="track__title-link" href="http://">
+                          Elektro <span class="track__title-span"></span>
+                        </a>
                       </div>
                     </div>
                     <div class="track__author">
-                      <a class="track__author-link" href="http://"
-                        >Dynoro, Outwork, Mr. Gee</a
-                      >
+                      <a class="track__author-link" href="http://">
+                        Dynoro, Outwork, Mr. Gee
+                      </a>
                     </div>
                     <div class="track__album">
-                      <a class="track__album-link" href="http://">Elektro</a>
+                      <a class="track__album-link" href="http://">
+                        Elektro
+                      </a>
                     </div>
                     <div class="track__time">
                       <svg class="track__time-svg" alt="time">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span class="track__time-text">2:22</span>
                     </div>
@@ -131,26 +141,28 @@ function App() {
                     <div class="track__title">
                       <div class="track__title-image">
                         <svg class="track__title-svg" alt="music">
-                          <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div class="track__title-text">
-                        <a class="track__title-link" href="http://"
-                          >I’m Fire <span class="track__title-span"></span
-                        ></a>
+                        <a class="track__title-link" href="http://">
+                          I`m Fire <span class="track__title-span"></span>
+                        </a>
                       </div>
                     </div>
                     <div class="track__author">
-                      <a class="track__author-link" href="http://"
-                        >Ali Bakgor</a
-                      >
+                      <a class="track__author-link" href="http://">
+                        Ali Bakgor
+                      </a>
                     </div>
                     <div class="track__album">
-                      <a class="track__album-link" href="http://">I’m Fire</a>
+                      <a class="track__album-link" href="http://">
+                        I`m Fire
+                      </a>
                     </div>
                     <div class="track__time">
                       <svg class="track__time-svg" alt="time">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span class="track__time-text">2:22</span>
                     </div>
@@ -162,27 +174,29 @@ function App() {
                     <div class="track__title">
                       <div class="track__title-image">
                         <svg class="track__title-svg" alt="music">
-                          <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div class="track__title-text">
-                        <a class="track__title-link" href="http://"
-                          >Non Stop
-                          <span class="track__title-span">(Remix)</span></a
-                        >
+                        <a class="track__title-link" href="http://">
+                          Non Stop
+                          <span class="track__title-span">(Remix)</span>
+                        </a>
                       </div>
                     </div>
                     <div class="track__author">
-                      <a class="track__author-link" href="http://"
-                        >Стоункат, Psychopath</a
-                      >
+                      <a class="track__author-link" href="http://">
+                        Стоункат, Psychopath
+                      </a>
                     </div>
                     <div class="track__album">
-                      <a class="track__album-link" href="http://">Non Stop</a>
+                      <a class="track__album-link" href="http://">
+                        Non Stop
+                      </a>
                     </div>
                     <div class="track__time">
                       <svg class="track__time-svg" alt="time">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span class="track__time-text">4:12</span>
                     </div>
@@ -194,29 +208,29 @@ function App() {
                     <div class="track__title">
                       <div class="track__title-image">
                         <svg class="track__title-svg" alt="music">
-                          <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div class="track__title-text">
-                        <a class="track__title-link" href="http://"
-                          >Run Run
-                          <span class="track__title-span"
-                            >(feat. AR/CO)</span
-                          ></a
-                        >
+                        <a class="track__title-link" href="http://">
+                          Run Run
+                          <span class="track__title-span">(feat. AR/CO)</span>
+                        </a>
                       </div>
                     </div>
                     <div class="track__author">
-                      <a class="track__author-link" href="http://"
-                        >Jaded, Will Clarke, AR/CO</a
-                      >
+                      <a class="track__author-link" href="http://">
+                        Jaded, Will Clarke, AR/CO
+                      </a>
                     </div>
                     <div class="track__album">
-                      <a class="track__album-link" href="http://">Run Run</a>
+                      <a class="track__album-link" href="http://">
+                        Run Run
+                      </a>
                     </div>
                     <div class="track__time">
                       <svg class="track__time-svg" alt="time">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span class="track__time-text">2:54</span>
                     </div>
@@ -228,31 +242,31 @@ function App() {
                     <div class="track__title">
                       <div class="track__title-image">
                         <svg class="track__title-svg" alt="music">
-                          <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div class="track__title-text">
-                        <a class="track__title-link" href="http://"
-                          >Eyes on Fire
-                          <span class="track__title-span"
-                            >(Zeds Dead Remix)</span
-                          ></a
-                        >
+                        <a class="track__title-link" href="http://">
+                          Eyes on Fire
+                          <span class="track__title-span">
+                            (Zeds Dead Remix)
+                          </span>
+                        </a>
                       </div>
                     </div>
                     <div class="track__author">
-                      <a class="track__author-link" href="http://"
-                        >Blue Foundation, Zeds Dead</a
-                      >
+                      <a class="track__author-link" href="http://">
+                        Blue Foundation, Zeds Dead
+                      </a>
                     </div>
                     <div class="track__album">
-                      <a class="track__album-link" href="http://"
-                        >Eyes on Fire</a
-                      >
+                      <a class="track__album-link" href="http://">
+                        Eyes on Fire
+                      </a>
                     </div>
                     <div class="track__time">
                       <svg class="track__time-svg" alt="time">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span class="track__time-text">5:20</span>
                     </div>
@@ -264,29 +278,31 @@ function App() {
                     <div class="track__title">
                       <div class="track__title-image">
                         <svg class="track__title-svg" alt="music">
-                          <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div class="track__title-text">
-                        <a class="track__title-link" href="http://"
-                          >Mucho Bien
-                          <span class="track__title-span"
-                            >(Hi Profile Remix)</span
-                          ></a
-                        >
+                        <a class="track__title-link" href="http://">
+                          Mucho Bien
+                          <span class="track__title-span">
+                            (Hi Profile Remix)
+                          </span>
+                        </a>
                       </div>
                     </div>
                     <div class="track__author">
-                      <a class="track__author-link" href="http://"
-                        >HYBIT, Mr. Black, Offer Nissim, Hi Profile</a
-                      >
+                      <a class="track__author-link" href="http://">
+                        HYBIT, Mr. Black, Offer Nissim, Hi Profile
+                      </a>
                     </div>
                     <div class="track__album">
-                      <a class="track__album-link" href="http://">Mucho Bien</a>
+                      <a class="track__album-link" href="http://">
+                        Mucho Bien
+                      </a>
                     </div>
                     <div class="track__time">
                       <svg class="track__time-svg" alt="time">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span class="track__time-text">3:41</span>
                     </div>
@@ -298,27 +314,29 @@ function App() {
                     <div class="track__title">
                       <div class="track__title-image">
                         <svg class="track__title-svg" alt="music">
-                          <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div class="track__title-text">
-                        <a class="track__title-link" href="http://"
-                          >Knives n Cherries
-                          <span class="track__title-span"></span
-                        ></a>
+                        <a class="track__title-link" href="http://">
+                          Knives n Cherries
+                          <span class="track__title-span"></span>
+                        </a>
                       </div>
                     </div>
                     <div class="track__author">
-                      <a class="track__author-link" href="http://">minthaze</a>
+                      <a class="track__author-link" href="http://">
+                        minthaze
+                      </a>
                     </div>
                     <div class="track__album">
-                      <a class="track__album-link" href="http://"
-                        >Captivating</a
-                      >
+                      <a class="track__album-link" href="http://">
+                        Captivating
+                      </a>
                     </div>
                     <div class="track__time">
                       <svg class="track__time-svg" alt="time">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span class="track__time-text">1:48</span>
                     </div>
@@ -330,27 +348,29 @@ function App() {
                     <div class="track__title">
                       <div class="track__title-image">
                         <svg class="track__title-svg" alt="music">
-                          <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div class="track__title-text">
-                        <a class="track__title-link" href="http://"
-                          >Knives n Cherries
-                          <span class="track__title-span"></span
-                        ></a>
+                        <a class="track__title-link" href="http://">
+                          Knives n Cherries
+                          <span class="track__title-span"></span>
+                        </a>
                       </div>
                     </div>
                     <div class="track__author">
-                      <a class="track__author-link" href="http://">minthaze</a>
+                      <a class="track__author-link" href="http://">
+                        minthaze
+                      </a>
                     </div>
                     <div class="track__album">
-                      <a class="track__album-link" href="http://"
-                        >Captivating</a
-                      >
+                      <a class="track__album-link" href="http://">
+                        Captivating
+                      </a>
                     </div>
                     <div class="track__time">
                       <svg class="track__time-svg" alt="time">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span class="track__time-text">1:48</span>
                     </div>
@@ -361,27 +381,29 @@ function App() {
                     <div class="track__title">
                       <div class="track__title-image">
                         <svg class="track__title-svg" alt="music">
-                          <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div class="track__title-text">
-                        <a class="track__title-link" href="http://"
-                          >Knives n Cherries
-                          <span class="track__title-span"></span
-                        ></a>
+                        <a class="track__title-link" href="http://">
+                          Knives n Cherries
+                          <span class="track__title-span"></span>
+                        </a>
                       </div>
                     </div>
                     <div class="track__author">
-                      <a class="track__author-link" href="http://">minthaze</a>
+                      <a class="track__author-link" href="http://">
+                        minthaze
+                      </a>
                     </div>
                     <div class="track__album">
-                      <a class="track__album-link" href="http://"
-                        >Captivating</a
-                      >
+                      <a class="track__album-link" href="http://">
+                        Captivating
+                      </a>
                     </div>
                     <div class="track__time">
                       <svg class="track__time-svg" alt="time">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span class="track__time-text">1:48</span>
                     </div>
@@ -392,27 +414,29 @@ function App() {
                     <div class="track__title">
                       <div class="track__title-image">
                         <svg class="track__title-svg" alt="music">
-                          <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div class="track__title-text">
-                        <a class="track__title-link" href="http://"
-                          >Knives n Cherries
-                          <span class="track__title-span"></span
-                        ></a>
+                        <a class="track__title-link" href="http://">
+                          Knives n Cherries
+                          <span class="track__title-span"></span>
+                        </a>
                       </div>
                     </div>
                     <div class="track__author">
-                      <a class="track__author-link" href="http://">minthaze</a>
+                      <a class="track__author-link" href="http://">
+                        minthaze
+                      </a>
                     </div>
                     <div class="track__album">
-                      <a class="track__album-link" href="http://"
-                        >Captivating</a
-                      >
+                      <a class="track__album-link" href="http://">
+                        Captivating
+                      </a>
                     </div>
                     <div class="track__time">
                       <svg class="track__time-svg" alt="time">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span class="track__time-text">1:48</span>
                     </div>
@@ -423,27 +447,29 @@ function App() {
                     <div class="track__title">
                       <div class="track__title-image">
                         <svg class="track__title-svg" alt="music">
-                          <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div class="track__title-text">
-                        <a class="track__title-link" href="http://"
-                          >Knives n Cherries
-                          <span class="track__title-span"></span
-                        ></a>
+                        <a class="track__title-link" href="http://">
+                          Knives n Cherries
+                          <span class="track__title-span"></span>
+                        </a>
                       </div>
                     </div>
                     <div class="track__author">
-                      <a class="track__author-link" href="http://">minthaze</a>
+                      <a class="track__author-link" href="http://">
+                        minthaze
+                      </a>
                     </div>
                     <div class="track__album">
-                      <a class="track__album-link" href="http://"
-                        >Captivating</a
-                      >
+                      <a class="track__album-link" href="http://">
+                        Captivating
+                      </a>
                     </div>
                     <div class="track__time">
                       <svg class="track__time-svg" alt="time">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span class="track__time-text">1:48</span>
                     </div>
@@ -454,27 +480,29 @@ function App() {
                     <div class="track__title">
                       <div class="track__title-image">
                         <svg class="track__title-svg" alt="music">
-                          <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div class="track__title-text">
-                        <a class="track__title-link" href="http://"
-                          >Knives n Cherries
-                          <span class="track__title-span"></span
-                        ></a>
+                        <a class="track__title-link" href="http://">
+                          Knives n Cherries
+                          <span class="track__title-span"></span>
+                        </a>
                       </div>
                     </div>
                     <div class="track__author">
-                      <a class="track__author-link" href="http://">minthaze</a>
+                      <a class="track__author-link" href="http://">
+                        minthaze
+                      </a>
                     </div>
                     <div class="track__album">
-                      <a class="track__album-link" href="http://"
-                        >Captivating</a
-                      >
+                      <a class="track__album-link" href="http://">
+                        Captivating
+                      </a>
                     </div>
                     <div class="track__time">
                       <svg class="track__time-svg" alt="time">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span class="track__time-text">1:48</span>
                     </div>
@@ -485,27 +513,29 @@ function App() {
                     <div class="track__title">
                       <div class="track__title-image">
                         <svg class="track__title-svg" alt="music">
-                          <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div class="track__title-text">
-                        <a class="track__title-link" href="http://"
-                          >Knives n Cherries
-                          <span class="track__title-span"></span
-                        ></a>
+                        <a class="track__title-link" href="http://">
+                          Knives n Cherries
+                          <span class="track__title-span"></span>
+                        </a>
                       </div>
                     </div>
                     <div class="track__author">
-                      <a class="track__author-link" href="http://">minthaze</a>
+                      <a class="track__author-link" href="http://">
+                        minthaze
+                      </a>
                     </div>
                     <div class="track__album">
-                      <a class="track__album-link" href="http://"
-                        >Captivating</a
-                      >
+                      <a class="track__album-link" href="http://">
+                        Captivating
+                      </a>
                     </div>
                     <div class="track__time">
                       <svg class="track__time-svg" alt="time">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span class="track__time-text">1:48</span>
                     </div>
@@ -517,29 +547,29 @@ function App() {
                     <div class="track__title">
                       <div class="track__title-image">
                         <svg class="track__title-svg" alt="music">
-                          <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div class="track__title-text">
-                        <a class="track__title-link" href="http://"
-                          >How Deep Is Your Love
-                          <span class="track__title-span"></span
-                        ></a>
+                        <a class="track__title-link" href="http://">
+                          How Deep Is Your Love
+                          <span class="track__title-span"></span>
+                        </a>
                       </div>
                     </div>
                     <div class="track__author">
-                      <a class="track__author-link" href="http://"
-                        >Calvin Harris, Disciples</a
-                      >
+                      <a class="track__author-link" href="http://">
+                        Calvin Harris, Disciples
+                      </a>
                     </div>
                     <div class="track__album">
-                      <a class="track__album-link" href="http://"
-                        >How Deep Is Your Love</a
-                      >
+                      <a class="track__album-link" href="http://">
+                        How Deep Is Your Love
+                      </a>
                     </div>
                     <div class="track__time">
                       <svg class="track__time-svg" alt="time">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span class="track__time-text">3:32</span>
                     </div>
@@ -551,26 +581,28 @@ function App() {
                     <div class="track__title">
                       <div class="track__title-image">
                         <svg class="track__title-svg" alt="music">
-                          <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div class="track__title-text">
-                        <a class="track__title-link" href="http://"
-                          >Morena <span class="track__title-span"></span
-                        ></a>
+                        <a class="track__title-link" href="http://">
+                          Morena <span class="track__title-span"></span>
+                        </a>
                       </div>
                     </div>
                     <div class="track__author">
-                      <a class="track__author-link" href="http://">Tom Boxer</a>
+                      <a class="track__author-link" href="http://">
+                        Tom Boxer
+                      </a>
                     </div>
                     <div class="track__album">
-                      <a class="track__album-link" href="http://"
-                        >Soundz Made in Romania</a
-                      >
+                      <a class="track__album-link" href="http://">
+                        Soundz Made in Romania
+                      </a>
                     </div>
                     <div class="track__time">
                       <svg class="track__time-svg" alt="time">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span class="track__time-text">3:36</span>
                     </div>
@@ -582,13 +614,13 @@ function App() {
                     <div class="track__title">
                       <div class="track__title-image">
                         <svg class="track__title-svg" alt="music">
-                          <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                          <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                         </svg>
                       </div>
                       <div class="track__title-text">
                         <a class="track__title-link" href="http://">
-                          <span class="track__title-span"></span
-                        ></a>
+                          <span class="track__title-span"></span>
+                        </a>
                       </div>
                     </div>
                     <div class="track__author">
@@ -599,7 +631,7 @@ function App() {
                     </div>
                     <div class="track__time">
                       <svg class="track__time-svg" alt="time">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                       <span class="track__time-text"></span>
                     </div>
@@ -613,7 +645,7 @@ function App() {
               <p class="sidebar__personal-name">Sergey.Ivanov</p>
               <div class="sidebar__icon">
                 <svg alt="logout">
-                  <use xlink:href="img/icon/sprite.svg#logout"></use>
+                  <use xlinkHref="img/icon/sprite.svg#logout"></use>
                 </svg>
               </div>
             </div>
@@ -658,27 +690,27 @@ function App() {
                 <div class="player__controls">
                   <div class="player__btn-prev">
                     <svg class="player__btn-prev-svg" alt="prev">
-                      <use xlink:href="img/icon/sprite.svg#icon-prev"></use>
+                      <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                     </svg>
                   </div>
                   <div class="player__btn-play _btn">
                     <svg class="player__btn-play-svg" alt="play">
-                      <use xlink:href="img/icon/sprite.svg#icon-play"></use>
+                      <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
                     </svg>
                   </div>
                   <div class="player__btn-next">
                     <svg class="player__btn-next-svg" alt="next">
-                      <use xlink:href="img/icon/sprite.svg#icon-next"></use>
+                      <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                     </svg>
                   </div>
                   <div class="player__btn-repeat _btn-icon">
                     <svg class="player__btn-repeat-svg" alt="repeat">
-                      <use xlink:href="img/icon/sprite.svg#icon-repeat"></use>
+                      <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
                     </svg>
                   </div>
                   <div class="player__btn-shuffle _btn-icon">
                     <svg class="player__btn-shuffle-svg" alt="shuffle">
-                      <use xlink:href="img/icon/sprite.svg#icon-shuffle"></use>
+                      <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                     </svg>
                   </div>
                 </div>
@@ -687,30 +719,30 @@ function App() {
                   <div class="track-play__contain">
                     <div class="track-play__image">
                       <svg class="track-play__svg" alt="music">
-                        <use xlink:href="img/icon/sprite.svg#icon-note"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                       </svg>
                     </div>
                     <div class="track-play__author">
-                      <a class="track-play__author-link" href="http://"
-                        >Ты та...</a
-                      >
+                      <a class="track-play__author-link" href="http://">
+                        Ты та...
+                      </a>
                     </div>
                     <div class="track-play__album">
-                      <a class="track-play__album-link" href="http://">Баста</a>
+                      <a class="track-play__album-link" href="http://">
+                        Баста
+                      </a>
                     </div>
                   </div>
 
                   <div class="track-play__like-dis">
                     <div class="track-play__like _btn-icon">
                       <svg class="track-play__like-svg" alt="like">
-                        <use xlink:href="img/icon/sprite.svg#icon-like"></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                       </svg>
                     </div>
                     <div class="track-play__dislike _btn-icon">
                       <svg class="track-play__dislike-svg" alt="dislike">
-                        <use
-                          xlink:href="img/icon/sprite.svg#icon-dislike"
-                        ></use>
+                        <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
                       </svg>
                     </div>
                   </div>
@@ -720,7 +752,7 @@ function App() {
                 <div class="volume__content">
                   <div class="volume__image">
                     <svg class="volume__svg" alt="volume">
-                      <use xlink:href="img/icon/sprite.svg#icon-volume"></use>
+                      <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
                     </svg>
                   </div>
                   <div class="volume__progress _btn">
@@ -740,3 +772,5 @@ function App() {
     </div>
   );
 }
+
+export default App;
