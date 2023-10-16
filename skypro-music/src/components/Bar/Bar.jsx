@@ -1,7 +1,14 @@
 import React from "react";
 import "./Bar.css";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css';
+const { useState } = React;
 
 function bar() {
+  const [isLoading, setLoading] = useState(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
   return (
     <div className="bar">
       <div className="bar__content">
@@ -44,14 +51,36 @@ function bar() {
                   </svg>
                 </div>
                 <div className="track-play__author">
+                  <SkeletonTheme
+                    baseColor="#313131"
+                    highlightColor="#fff"
+                    height={20}
+                    width={120}
+                  >
+                    {isLoading ? (
+                  <Skeleton />
+                ) : (
                   <a className="track-play__author-link" href="http://">
                     Ты та...
                   </a>
+                )}
+                  </SkeletonTheme>
                 </div>
                 <div className="track-play__album">
+                <SkeletonTheme
+                    baseColor="#313131"
+                    highlightColor="#fff"
+                    height={20}
+                    width={120}
+                  >
+                    {isLoading ? (
+                  <Skeleton />
+                ) : (
                   <a className="track-play__album-link" href="http://">
                     Баста
                   </a>
+                )}
+                  </SkeletonTheme>
                 </div>
               </div>
 
