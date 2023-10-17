@@ -4,7 +4,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css';
 const { useState } = React;
 
-function bar() {
+function Bar() {
   const [isLoading, setLoading] = useState(true);
     setTimeout(() => {
       setLoading(false);
@@ -119,4 +119,4 @@ function bar() {
     </div>
   );
 }
-export default bar;
+export default Bar;

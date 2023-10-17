@@ -1,14 +1,13 @@
-import React from "react";
 import "./Sidebar.css";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css';
-const { useState } = React;
+import React, { useState } from "react";
 
-function sidebar() {
+function Sidebar() {
   const [isLoading, setLoading] = useState(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
+  setTimeout(() => {
+    setLoading(false);
+  }, 3000);
   return (
     <div className="main__sidebar sidebar">
       <div className="sidebar__personal">
@@ -43,7 +42,7 @@ function sidebar() {
             </SkeletonTheme>
           </div>
           <div className="sidebar__item">
-          <SkeletonTheme
+              <SkeletonTheme
                 baseColor="#313131"
                 highlightColor="#fff"
                 height={150}
@@ -64,7 +63,7 @@ function sidebar() {
             </SkeletonTheme>
           </div>
           <div className="sidebar__item">
-          <SkeletonTheme
+              <SkeletonTheme
                 baseColor="#313131"
                 highlightColor="#fff"
                 height={150}
@@ -89,4 +88,4 @@ function sidebar() {
     </div>
   );
 }
-export default sidebar;
+export default Sidebar;
