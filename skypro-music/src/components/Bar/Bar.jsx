@@ -1,5 +1,6 @@
 import React from "react";
 import "./Bar.css";
+import * as S from "./Bar.styles"
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css';
 const { useState } = React;
@@ -10,47 +11,47 @@ function Bar() {
       setLoading(false);
     }, 3000);
   return (
-    <div className="bar">
-      <div className="bar__content">
-        <div className="bar__player-progress"></div>
-        <div className="bar__player-block">
-          <div className="bar__player player">
-            <div className="player__controls">
-              <div className="player__btn-prev">
-                <svg className="player__btn-prev-svg" alt="prev">
+    <S.bar>
+      <S.barContent>
+        <S.barPlayerProgress></S.barPlayerProgress>
+        <S.barPlayerBlock>
+          <S.barPlayer>
+            <S.playerControls>
+              <S.playerBtnPrev>
+                <S.playerBtnPrevSVG alt="prev">
                   <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
-                </svg>
-              </div>
-              <div className="player__btn-play _btn">
-                <svg className="player__btn-play-svg" alt="play">
+                </S.playerBtnPrevSVG>
+              </S.playerBtnPrev>
+              <S.playerBtnPlay>
+                <S.playerBtnPlaySVG alt="play">
                   <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
-                </svg>
-              </div>
-              <div className="player__btn-next">
-                <svg className="player__btn-next-svg" alt="next">
+                </S.playerBtnPlaySVG>
+              </S.playerBtnPlay>
+              <S.playerBtnNext>
+                <S.playerBtnNextSVG alt="next">
                   <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
-                </svg>
-              </div>
-              <div className="player__btn-repeat _btn-icon">
-                <svg className="player__btn-repeat-svg" alt="repeat">
+                </S.playerBtnNextSVG>
+              </S.playerBtnNext>
+              <S.playerBtnRepeat>
+                <S.playerBtnRepeatSVG alt="repeat">
                   <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
-                </svg>
-              </div>
-              <div className="player__btn-shuffle _btn-icon">
-                <svg className="player__btn-shuffle-svg" alt="shuffle">
+                </S.playerBtnRepeatSVG>
+              </S.playerBtnRepeat>
+              <S.playerBtnShuffle>
+                <S.playerBtnShuffleSVG alt="shuffle">
                   <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
-                </svg>
-              </div>
-            </div>
+                </S.playerBtnShuffleSVG>
+              </S.playerBtnShuffle>
+            </S.playerControls>
 
-            <div className="player__track-play track-play">
-              <div className="track-play__contain">
-                <div className="track-play__image">
-                  <svg className="track-play__svg" alt="music">
+            <S.player>
+              <S.trackPlayContain>
+                <S.trackPlayImage>
+                  <S.trackPlaySVG alt="music">
                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                  </svg>
-                </div>
-                <div className="track-play__author">
+                  </S.trackPlaySVG>
+                </S.trackPlayImage>
+                <S.treck>
                   <SkeletonTheme
                     baseColor="#313131"
                     highlightColor="#fff"
@@ -59,15 +60,15 @@ function Bar() {
                   >
                     {isLoading ? (
                   <Skeleton />
-                ) : (
-                  <a className="track-play__author-link" href="http://">
+                  ) : (
+                  <S.treckLink href="http://">
                     Ты та...
-                  </a>
-                )}
+                  </S.treckLink>
+                  )}
                   </SkeletonTheme>
-                </div>
-                <div className="track-play__album">
-                <SkeletonTheme
+                </S.treck>
+                <S.author>
+                  <SkeletonTheme
                     baseColor="#313131"
                     highlightColor="#fff"
                     height={20}
@@ -75,29 +76,29 @@ function Bar() {
                   >
                     {isLoading ? (
                   <Skeleton />
-                ) : (
-                  <a className="track-play__album-link" href="http://">
+                  ) : (
+                  <S.authorLink href="http://">
                     Баста
-                  </a>
-                )}
+                  </S.authorLink>
+                  )}
                   </SkeletonTheme>
-                </div>
-              </div>
+                </S.author>
+              </S.trackPlayContain>
 
-              <div className="track-play__like-dis">
-                <div className="track-play__like _btn-icon">
-                  <svg className="track-play__like-svg" alt="like">
+              <S.opinion>
+                <S.like>
+                  <S.likeSVG alt="like">
                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                  </svg>
-                </div>
-                <div className="track-play__dislike _btn-icon">
-                  <svg className="track-play__dislike-svg" alt="dislike">
+                  </S.likeSVG>
+                </S.like>
+                <S.dislike>
+                  <S.dislikeSVG alt="dislike">
                     <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
+                  </S.dislikeSVG>
+                </S.dislike>
+              </S.opinion>
+            </S.player>
+          </S.barPlayer>
           <div className="bar__volume-block volume">
             <div className="volume__content">
               <div className="volume__image">
@@ -114,9 +115,9 @@ function Bar() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </S.barPlayerBlock>
+      </S.barContent>
+    </S.bar>
   );
 }
 export default Bar;

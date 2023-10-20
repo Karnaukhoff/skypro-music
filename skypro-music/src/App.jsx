@@ -1,4 +1,5 @@
 import "./App.css";
+import * as S from "./App.styles"
 import React from "react";
 
 import NavMenu from "./components/NavMenu/NavMenu";
@@ -10,22 +11,22 @@ import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
   return (
-    <div className="wrapper">
-      <div className="container">
-        <main className="main">
+    <S.wrapper>
+      <S.container>
+        <S.main>
           <NavMenu />
-          <div className="main__centerblock centerblock">
+          <S.centroblock>
             <Search />
-            <h2 className="centerblock__h2">Треки</h2>
+            <S.centoblockTittle>Треки</S.centoblockTittle>
             <Filter />
             <TreckList />
-          </div>
+          </S.centroblock>
           <Sidebar />
-        </main>
+        </S.main>
         <Bar />
-        <footer className="footer"></footer>
-      </div>
-    </div>
+        <S.footer></S.footer>
+      </S.container>
+    </S.wrapper>
   );
 }
 
