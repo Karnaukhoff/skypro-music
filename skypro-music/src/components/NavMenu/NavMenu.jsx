@@ -1,5 +1,7 @@
 import React from "react";
 import * as S from "./NavMenu.styles"
+import { NavLink } from "react-router-dom";
+import "./App-link.css"
 
 const { useState } = React;
 
@@ -21,19 +23,19 @@ function NavMenu() {
         <S.navMenu>
           <S.menuList>
             <S.menuItem>
-              <S.menuLink href="#">
+              <NavLink className="App-link" to="/">
                 Главное
-              </S.menuLink>
+              </NavLink>
             </S.menuItem>
             <S.menuItem>
-              <S.menuLink href="#">
+              <NavLink className="App-link" to="/favorites">
                 Мой плейлист
-              </S.menuLink>
+              </NavLink>
             </S.menuItem>
             <S.menuItem>
-              <S.menuLink href="../signin.html">
-                Войти
-              </S.menuLink>
+              <NavLink className="App-link" to="/">
+                Выйти
+              </NavLink>
             </S.menuItem>
           </S.menuList>
         </S.navMenu>
