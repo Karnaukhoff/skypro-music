@@ -1,4 +1,3 @@
-import "./App.css";
 import * as S from "./App.styles"
 import React from "react";
 
@@ -8,10 +7,12 @@ import Filter from "./components/Filter/Filter";
 import TreckList from "./components/TreckList/TreckList";
 import Bar from "./components/Bar/Bar";
 import Sidebar from "./components/Sidebar/Sidebar";
+import GlobalStyle from "./App.styles";
 
 function App() {
   return (
     <S.wrapper>
+      <GlobalStyle />
       <S.container>
         <S.main>
           <NavMenu />
