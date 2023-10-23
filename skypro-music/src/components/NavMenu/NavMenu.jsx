@@ -1,5 +1,5 @@
 import React from "react";
-import "./NavMenu.css";
+import * as S from "./NavMenu.styles"
 
 const { useState } = React;
 
@@ -8,37 +8,37 @@ function NavMenu() {
   const toggleVisibility = () => setVisible(!visible);
 
   return (
-    <nav className="main__nav nav">
-      <div className="nav__logo logo">
-        <img className="logo__image" src="img/logo.png" alt="logo" />
-      </div>
-      <div className="nav__burger burger" onClick={toggleVisibility}>
-        <span className="burger__line"></span>
-        <span className="burger__line"></span>
-        <span className="burger__line"></span>
-      </div>
+    <S.mainNav>
+      <S.navLogo>
+        <S.logoImage src="img/logo.png" alt="logo" />
+      </S.navLogo>
+      <S.navBurger onClick={toggleVisibility}>
+        <S.burgerLine></S.burgerLine>
+        <S.burgerLine></S.burgerLine>
+        <S.burgerLine></S.burgerLine>
+      </S.navBurger>
       {visible && (
-        <div className="nav__menu menu">
-          <ul className="menu__list">
-            <li className="menu__item">
-              <a href="#" className="menu__link">
+        <S.navMenu>
+          <S.menuList>
+            <S.menuItem>
+              <S.menuLink href="#">
                 Главное
-              </a>
-            </li>
-            <li className="menu__item">
-              <a href="#" className="menu__link">
+              </S.menuLink>
+            </S.menuItem>
+            <S.menuItem>
+              <S.menuLink href="#">
                 Мой плейлист
-              </a>
-            </li>
-            <li className="menu__item">
-              <a href="../signin.html" className="menu__link">
+              </S.menuLink>
+            </S.menuItem>
+            <S.menuItem>
+              <S.menuLink href="../signin.html">
                 Войти
-              </a>
-            </li>
-          </ul>
-        </div>
+              </S.menuLink>
+            </S.menuItem>
+          </S.menuList>
+        </S.navMenu>
       )}
-    </nav>
+    </S.mainNav>
   );
 }
 

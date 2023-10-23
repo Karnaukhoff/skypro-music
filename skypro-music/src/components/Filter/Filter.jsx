@@ -1,5 +1,5 @@
 import React from "react";
-import "./Filter.css";
+import * as S from "./Filter.styles"
 const { useState } = React;
 
 function FilterList(activeFilter) {
@@ -14,57 +14,54 @@ function FilterList(activeFilter) {
     if (activeFilter === "genre") {filter = genres}
 
     return (
-    <div className="modal">
-        <div className="modal__content">
+    <S.modal>
+        <S.modalContent>
             {
                 filter.map((i) => {
                     return(
-                        <a href="#" className="modal__content_text">
+                        <S.modalContentText href="#">
                             {i}
-                        </a>
+                        </S.modalContentText>
                     )
                 })
             }
-        </div>
-    </div>
+        </S.modalContent>
+    </S.modal>
     );
   }
 
   function Filter() {
     const [activeFilter, setActiveFilter] = useState();
     return (
-    <div className="centerblock__filter filter">
-        <div className="filter__title">Искать по:</div>
-        <div
-          className="filter__button button-author _btn-text"
+    <S.centroblockFilter>
+        <S.filterTitle>Искать по:</S.filterTitle>
+        <S.filterButton
           onClick={() =>
             activeFilter !== "author" ? setActiveFilter("author") : setActiveFilter()
           }
         >
           исполнителю
           {activeFilter === "author" && FilterList(activeFilter)}
-        </div>
+        </S.filterButton>
   
-        <div
-          className="filter__button button-year _btn-text"
+        <S.filterButton
           onClick={() =>
             activeFilter !== "year" ? setActiveFilter("year") : setActiveFilter()
           }
         >
           году выпуска
           {activeFilter === "year" && FilterList(activeFilter)}
-        </div>
+        </S.filterButton>
   
-        <div
-          className="filter__button button-genre _btn-text"
+        <S.filterButton
           onClick={() =>
             activeFilter !== "genre" ? setActiveFilter("genre") : setActiveFilter()
           }
         >
           жанру
           {activeFilter === "genre" && FilterList(activeFilter)}
-        </div>
-    </div>
+        </S.filterButton>
+    </S.centroblockFilter>
     );
   }
   export default Filter;
