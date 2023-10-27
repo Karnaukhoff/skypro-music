@@ -23,7 +23,7 @@ export const AppRoutes = () => {
   }
   return (
     <Routes>
-        <Route path="/login" element={<LogIn user={user}
+        <Route path="/" element={<LogIn user={user}
           onAuthButtonClick={user ? handleLogout : handleLogin}/>} />
         <Route path="/register" element={<Register />} />
 
