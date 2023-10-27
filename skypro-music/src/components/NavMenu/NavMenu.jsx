@@ -33,7 +33,7 @@ function NavMenu() {
               </NavLink>
             </S.menuItem>
             <S.menuItem>
-              <NavLink className="App-link" to="/login">
+              <NavLink className="App-link" to="/">
                 Выйти
               </NavLink>
             </S.menuItem>
