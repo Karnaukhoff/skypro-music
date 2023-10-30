@@ -5,9 +5,13 @@ import "./App-link.css"
 
 const { useState } = React;
 
-function NavMenu() {
+function NavMenu({ user, setUser }) {
   const [visible, setVisible] = useState(false);
   const toggleVisibility = () => setVisible(!visible);
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+  };
 
   return (
     <S.mainNav>
@@ -33,7 +37,7 @@ function NavMenu() {
               </NavLink>
             </S.menuItem>
             <S.menuItem>
-              <NavLink className="App-link" to="/">
+              <NavLink className="App-link" to="/login" onClick={user !== null && handleLogout}>
                 Выйти
               </NavLink>
             </S.menuItem>

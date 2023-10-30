@@ -9,13 +9,13 @@ import Bar from "../components/Bar/Bar";
 import Sidebar from "../components/Sidebar/Sidebar";
 import GlobalStyle from "./styles/Main.styles";
 
-export const Main = () => {
+export const Main = ({ user, setUser }) => {
   return (
     <S.wrapper>
       <GlobalStyle />
       <S.container>
         <S.main>
-          <NavMenu />
+          <NavMenu user={user} setUser={setUser}/>
           <S.centroblock>
             <Search />
             <S.centoblockTittle>Треки</S.centoblockTittle>
