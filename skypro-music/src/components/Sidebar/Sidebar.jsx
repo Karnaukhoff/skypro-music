@@ -1,6 +1,7 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css';
 import * as S from "./Sidebar.styles"
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 
 function Sidebar() {
@@ -31,7 +32,9 @@ function Sidebar() {
                     <Skeleton />
                   ) : (
                       <S.SidebarLink href="/#">
-                        <S.SidebarImg src="img/playlist01.png" alt="day's playlist" />
+                        <Link to={'/categorySongs/1'}>
+                          <S.SidebarImg src="img/playlist01.png" alt="day's playlist" />
+                        </Link>
                       </S.SidebarLink>
                       )
                   }
@@ -48,7 +51,9 @@ function Sidebar() {
                     <Skeleton />
                   ) : (
                       <S.SidebarLink href="/#">
-                        <S.SidebarImg src="img/playlist02.png" alt="day's playlist" />
+                        <Link to={'/categorySongs/2'}>
+                          <S.SidebarImg src="img/playlist02.png" alt="day's playlist" />
+                        </Link>
                       </S.SidebarLink>
                       )
                   }
@@ -65,7 +70,9 @@ function Sidebar() {
                     <Skeleton />
                   ) : (
                       <S.SidebarLink href="/#">
-                        <S.SidebarImg src="img/playlist01.png" alt="day's playlist" />
+                        <Link to={'/categorySongs/3'}>
+                          <S.SidebarImg src="img/playlist03.png" alt="day's playlist" />
+                        </Link>
                       </S.SidebarLink>
                       )
                   }

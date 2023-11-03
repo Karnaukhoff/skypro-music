@@ -49,9 +49,22 @@ export const menuItem = styled.li`
     padding: 5px 0;
     margin-bottom: 16px;
 `
-export const menuLink = styled.a`
+/*export const menuLink = styled(NavLink)`
     color: #ffffff;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
-`
+`*/
+/*export const menuLink = styled.a`
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+
+
+    <S.menuLink href="#">
+        <NavLink className="App-link" to="/">
+            Главное
+        </NavLink>
+    </S.menuLink>
+`*/
