@@ -2,13 +2,8 @@ import React from "react";
 import * as S from "./Bar.styles";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-const { useState } = React;
 
-function Bar() {
-  const [isLoading, setLoading] = useState(true);
-  setTimeout(() => {
-    setLoading(false);
-  }, 3000);
+function Bar({loading, currentTrack}) {
   return (
     <S.Bar>
       <S.BarContent>
@@ -57,11 +52,11 @@ function Bar() {
                     height={20}
                     width={120}
                   >
-                  {isLoading ? (
+                  {loading ? (
                     <Skeleton />
                   ) : (
                     <S.TrackPlayerAuthorLink href="http://">
-                      Ты та...
+                      {currentTrack.name}
                     </S.TrackPlayerAuthorLink>
                   )}
                 </SkeletonTheme>
@@ -73,11 +68,11 @@ function Bar() {
                     height={20}
                     width={120}
                   >
-                  {isLoading ? (
+                  {loading ? (
                     <Skeleton />
                   ) : (
                     <S.TrackPlayAlbumLink href="http://">
-                      Баста
+                      {currentTrack.author}
                     </S.TrackPlayAlbumLink>
                   )}
                 </SkeletonTheme>
