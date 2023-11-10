@@ -9,7 +9,8 @@ import Bar from "../components/Bar/Bar";
 import Sidebar from "../components/Sidebar/Sidebar";
 import GlobalStyle from "./styles/Main.styles";
 
-export const Main = ({ user, setUser }) => {
+export const Main = ({ user, setUser, loading, tracks, tracksError, currentTrack, setCurrentTrack }) => {
+
   return (
     <S.wrapper>
       <GlobalStyle />
@@ -20,11 +21,11 @@ export const Main = ({ user, setUser }) => {
             <Search />
             <S.centoblockTittle>Треки</S.centoblockTittle>
             <Filter />
-            <TreckList />
+            {tracksError ? (<p>Не удалось загрузить плейлист, попробуйте позже</p>) : (<TreckList tracks={tracks} loading={loading} setCurrentTrack = {setCurrentTrack }/> )}
           </S.centroblock>
-          <Sidebar />
+          <Sidebar loading={loading}/>
         </S.main>
-        <Bar />
+        {currentTrack ? (<Bar loading = {loading} currentTrack = {currentTrack} />) : (null)}
         <S.footer></S.footer>
       </S.container>
     </S.wrapper>

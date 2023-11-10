@@ -2,13 +2,8 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css';
 import * as S from "./Sidebar.styles"
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
 
-function Sidebar() {
-  const [isLoading, setLoading] = useState(true);
-  setTimeout(() => {
-    setLoading(false);
-  }, 3000);
+function Sidebar({loading}) {
   return (
     <S.MainSidebar>
       <S.SidebarPersonal>
@@ -28,7 +23,7 @@ function Sidebar() {
                   height={150}
                   width={250}
                 >
-                {isLoading ? (
+                {loading ? (
                     <Skeleton />
                   ) : (
                       <S.SidebarLink href="/#">
@@ -47,7 +42,7 @@ function Sidebar() {
                   height={150}
                   width={250}
                 >
-                {isLoading ? (
+                {loading ? (
                     <Skeleton />
                   ) : (
                       <S.SidebarLink href="/#">
@@ -66,7 +61,7 @@ function Sidebar() {
                   height={150}
                   width={250}
                 >
-                {isLoading ? (
+                {loading ? (
                     <Skeleton />
                   ) : (
                       <S.SidebarLink href="/#">
