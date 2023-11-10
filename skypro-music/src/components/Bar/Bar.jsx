@@ -2,9 +2,31 @@ import React from "react";
 import * as S from "./Bar.styles";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useRef, useState, useEffect } from "react";
 
 function Bar({loading, currentTrack}) {
+  const [isPlaying, setPlaying] = useState(false);
+  const ref = useRef(0);
+
+  const handleStart = () => {
+    ref.current.play();
+  };
+
+  useEffect(handleStart, [currentTrack])
+
+
+  const handleStop = () => {
+    ref.current.pause();
+  };
+
   return (
+  <>
+    <audio
+      ref={ref}
+      src={currentTrack.track_file}
+      onPlay={() => setPlaying(true)}
+      onPause={() => setPlaying(false)}
+    ></audio>
     <S.Bar>
       <S.BarContent>
         <S.BarPlayerProgress></S.BarPlayerProgress>
@@ -16,11 +38,24 @@ function Bar({loading, currentTrack}) {
                   <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                 </S.BarBtnPrevSvg>
               </S.BarPlayerBtnPrev>
-              <S.BarPlayerBtnPlay>
+              {
+                  isPlaying ?
+                <S.BarPlayerBtnPlay onClick={handleStop}>
+                  <S.BarPlayerBtnPlaySvg alt="play">
+                    <svg width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="5" height="19" fill="#D9D9D9" />
+                      <rect x="10" width="5" height="19" fill="#D9D9D9" />
+                    </svg>
+                  </S.BarPlayerBtnPlaySvg>
+                </S.BarPlayerBtnPlay> 
+                :
+                <S.BarPlayerBtnPlay onClick={handleStart}>
                 <S.BarPlayerBtnPlaySvg alt="play">
                   <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
                 </S.BarPlayerBtnPlaySvg>
-              </S.BarPlayerBtnPlay>
+              </S.BarPlayerBtnPlay> 
+              }
+              
               <S.BarPlayerBtnNext>
                 <S.BarPlayerBtnNextSvg alt="next">
                   <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
@@ -108,6 +143,7 @@ function Bar({loading, currentTrack}) {
         </S.BarPlayerBlock>
       </S.BarContent>
     </S.Bar>
+  </>
   );
 }
 export default Bar;
