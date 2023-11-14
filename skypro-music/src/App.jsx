@@ -1,7 +1,12 @@
 import { AppRoutes } from "./routers";
+import { createGlobalStyle } from 'styled-components';
 import React from "react";
 import { useState, useEffect } from "react";
-import { getAllTracks } from "./api";
+import { getAllTracks } from "./api/api";
+
+const GlobalStyle = createGlobalStyle`
+ 
+`
 
 function App() {
   const [user, setUser] = useState(null);
@@ -28,7 +33,10 @@ function App() {
     Tracks ()
   }, [])
   return (
+    <>
+    <GlobalStyle />
     <AppRoutes user={user} setUser={setUser} loading = {loading}  tracks = {tracks} setTracks = {setTracks}  tracksError={tracksError} setCurrentTrack = {setCurrentTrack} currentTrack={currentTrack}/>
+    </>
   );
 }
 
