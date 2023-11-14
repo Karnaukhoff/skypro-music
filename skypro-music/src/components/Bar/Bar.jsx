@@ -6,18 +6,40 @@ import { useRef, useState, useEffect } from "react";
 
 function Bar({loading, currentTrack}) {
   const [isPlaying, setPlaying] = useState(false);
-  const ref = useRef(0);
+  const [isRepeat, setIsRepeat] = useState(false);
+  const ref = useRef(null);
 
   const handleStart = () => {
     ref.current.play();
   };
 
-  useEffect(handleStart, [currentTrack])
+  useEffect(handleStart, [currentTrack]) //запуск при клике
 
 
   const handleStop = () => {
     ref.current.pause();
   };
+
+  const handleRepeat = () => {
+    ref.current.loop = !isRepeat;
+    setIsRepeat(!isRepeat)
+  };
+
+  function Time(sec){
+    if (sec%60 >= 10){return `${Math.floor(sec/60)}:${Math.floor(sec%60)}`}
+    else {return `${Math.floor(sec/60)}:0${Math.floor(sec%60)}`}
+  }
+
+  const [currentTime, setCurrentTime] = useState(0); //текущее время
+  const [duration, setDuration] = useState(0); //длительность трека
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(ref.current.currentTime)
+      setDuration(ref.current.duration)
+    }, 1000);
+    return () => clearTimeout(interval);
+  }, [currentTrack]) //время
 
   return (
   <>
@@ -29,6 +51,14 @@ function Bar({loading, currentTrack}) {
     ></audio>
     <S.Bar>
       <S.BarContent>
+        <S.TimeCode >{Time(currentTime)} / {Time(duration)}</S.TimeCode>
+        <S.StyledProgressInput
+            type="range"
+            min={0}
+            max={duration}
+            value={currentTime}
+            onChange={(a) => { ref.current.currentTime = a.target.value}}
+        />
         <S.BarPlayerProgress></S.BarPlayerProgress>
         <S.BarPlayerBlock>
           <S.BarPlayer>
@@ -55,17 +85,25 @@ function Bar({loading, currentTrack}) {
                 </S.BarPlayerBtnPlaySvg>
               </S.BarPlayerBtnPlay> 
               }
-              
               <S.BarPlayerBtnNext>
                 <S.BarPlayerBtnNextSvg alt="next">
                   <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                 </S.BarPlayerBtnNextSvg>
               </S.BarPlayerBtnNext>
-              <S.BarPlayerBtnIconHover>
-                <S.BarPlayerBtnRepeatSvg alt="repeat">
-                  <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
-                </S.BarPlayerBtnRepeatSvg>
-              </S.BarPlayerBtnIconHover>
+              {isRepeat ?
+                  <S.PlayerBtnRepeat onClick={handleRepeat}>
+                    <S.PlayerBtnRepeatActiveSvg alt="repeat">
+                      <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                    </S.PlayerBtnRepeatActiveSvg>
+                  </S.PlayerBtnRepeat>
+
+                  :
+                  <S.PlayerBtnRepeat onClick={handleRepeat}>
+                    <S.PlayerBtnRepeatSvg alt="repeat">
+                      <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                    </S.PlayerBtnRepeatSvg>
+                  </S.PlayerBtnRepeat>
+                }
               <S.BarPlayerBtnIconHover>
                 <S.BarPlayerBtnShuffleSvg alt="shuffle">
                   <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
