@@ -302,7 +302,7 @@ export const TimeCode = styled.div`
 `;
 export const StyledProgressInput = styled.input`
   --progress-height: 8px;
-  --progress-color: #8b00ff;
+  --progress-color: #b672ff;
 
   --progress-bg-color: #2e2e2e;
 

@@ -174,7 +174,12 @@ function Bar({loading, currentTrack}) {
                 </S.VolumeSvg>
               </S.VolumeImage>
               <S.VolumeProgress>
-                <S.VolumeProgressLine type="range" name="range" />
+                <S.VolumeProgressLine type="range" name="range" 
+                  min={0}
+                  max={1}
+                  step={0.01}
+                  onChange={(a) => { ref.current.volume = a.target.value}}
+                />
               </S.VolumeProgress>
             </S.VolumeContent>
           </S.BarVolumeBlock>
