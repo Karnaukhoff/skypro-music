@@ -40,5 +40,3 @@ function TreckList({tracks, loading, setCurrentTrack }) {
   
 }
 export default TreckList;
-/*{<Track trackName={item.name} trackAuthor={item.author} album={item.album} trackTime={time(item.duration_in_seconds)
-}/>}*/
