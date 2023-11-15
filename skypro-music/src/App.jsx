@@ -5,7 +5,10 @@ import { useState, useEffect } from "react";
 import { getAllTracks } from "./api/api";
 
 const GlobalStyle = createGlobalStyle`
- 
+  *{
+    margin: 0;
+    padding: 0;
+  }
 `
 
 function App() {

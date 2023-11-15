@@ -5,8 +5,7 @@ import { CategorySongs } from "./pages/categorySongs";
 import { NotFound } from "./pages/NotFound";
 import { ProtectedRoute } from "./protected-routes/protectedRoutes";
 import React from "react";
-import { LogIn } from "./pages/LogIn";
-import { Register } from "./pages/register";
+import AuthPage from "./pages/LogIn"
 
 export const AppRoutes = ({user, setUser, loading, tracks, tracksError, currentTrack, setCurrentTrack}) => {
 
@@ -17,10 +16,15 @@ export const AppRoutes = ({user, setUser, loading, tracks, tracksError, currentT
         <Route path="/Favorites" element={<Favorites />} />
         <Route path="/categorySongs/:id" element={<CategorySongs/>}/>
       </Route>
-      <Route path="/login" element={<LogIn user={user} setUser={setUser}/>} />
-      <Route path="/register" element={<Register />} />
+      <Route
+        path="/login"
+        element={<AuthPage isLoginMode={true}></AuthPage>}
+      ></Route>
+      <Route
+        path="/register"
+        element={<AuthPage isLoginMode={false}></AuthPage>}
+      ></Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };
-//<LogIn user={user} setUser={setUser}/>
