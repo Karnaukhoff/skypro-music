@@ -38,9 +38,9 @@ function App() {
   }, [])
   return (
     <>
-    <Context.Provider value={{ user, setUser }}>
+    <Context.Provider value={{ user, setUser, loading, tracks, tracksError, currentTrack, setCurrentTrack }}>
       <GlobalStyle />
-      <AppRoutes user={user} setUser={setUser} loading = {loading}  tracks = {tracks} setTracks = {setTracks}  tracksError={tracksError} setCurrentTrack = {setCurrentTrack} currentTrack={currentTrack}/>
+      <AppRoutes/>
     </Context.Provider>
     </>
   );

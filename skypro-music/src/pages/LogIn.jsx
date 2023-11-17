@@ -31,7 +31,7 @@ export default function AuthPage({setUser}) {
         return
       }
       setUser(user.username)
-      localStorage.setItem("user", JSON.stringify(user.username));
+      localStorage.setItem("user", user.username);
       window.location.href="/"
       })
       .finally(() => {

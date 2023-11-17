@@ -6,13 +6,16 @@ import { NotFound } from "./pages/NotFound";
 import { ProtectedRoute } from "./protected-routes/protectedRoutes";
 import React from "react";
 import AuthPage from "./pages/LogIn"
+import { useContext } from "react";
+import Context from "./context"
 
-export const AppRoutes = ({user, setUser, loading, tracks, tracksError, currentTrack, setCurrentTrack}) => {
+export const AppRoutes = () => {
+  const { user, setUser } = useContext(Context)
 
   return (
     <Routes>
       <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
-        <Route path="/" element={<Main user={user} setUser={setUser} loading={loading} tracks = {tracks} tracksError={tracksError} currentTrack={currentTrack} setCurrentTrack={setCurrentTrack}> </Main>} />
+        <Route path="/" element={<Main />} />
         <Route path="/Favorites" element={<Favorites />} />
         <Route path="/categorySongs/:id" element={<CategorySongs/>}/>
       </Route>

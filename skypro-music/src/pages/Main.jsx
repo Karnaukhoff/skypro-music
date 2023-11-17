@@ -8,8 +8,11 @@ import TreckList from "../components/TreckList/TreckList";
 import Bar from "../components/Bar/Bar";
 import Sidebar from "../components/Sidebar/Sidebar";
 import GlobalStyle from "./styles/Main.styles";
+import { useContext } from "react";
+import Context from "../context"
 
-export const Main = ({ user, setUser, loading, tracks, tracksError, currentTrack, setCurrentTrack }) => {
+export const Main = () => {
+  const { user, setUser, loading, tracks, tracksError, currentTrack, setCurrentTrack } = useContext(Context)
 
   return (
     <S.wrapper>
