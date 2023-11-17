@@ -4,11 +4,14 @@ import * as S from "./Sidebar.styles"
 import { Link } from "react-router-dom";
 
 function Sidebar({loading}) {
+  function logOut(){
+    window.location.href="/login"
+  }
   return (
     <S.MainSidebar>
       <S.SidebarPersonal>
         <S.SidebarPersonalName>Sergey.Ivanov</S.SidebarPersonalName>
-        <S.SidebarIcon>
+        <S.SidebarIcon onClick={logOut}>
           <svg alt="logout">
             <use xlinkHref="img/icon/sprite.svg#logout"></use>
           </svg>
