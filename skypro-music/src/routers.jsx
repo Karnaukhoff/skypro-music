@@ -12,18 +12,11 @@ export const AppRoutes = ({user, setUser, loading, tracks, tracksError, currentT
   return (
     <Routes>
       <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
-      <Route path="/" element={<Main user={user} setUser={setUser} loading={loading} tracks = {tracks} tracksError={tracksError} currentTrack={currentTrack} setCurrentTrack={setCurrentTrack}> </Main>} />
+        <Route path="/" element={<Main user={user} setUser={setUser} loading={loading} tracks = {tracks} tracksError={tracksError} currentTrack={currentTrack} setCurrentTrack={setCurrentTrack}> </Main>} />
         <Route path="/Favorites" element={<Favorites />} />
         <Route path="/categorySongs/:id" element={<CategorySongs/>}/>
       </Route>
-      <Route
-        path="/login"
-        element={<AuthPage isLoginMode={true}></AuthPage>}
-      ></Route>
-      <Route
-        path="/register"
-        element={<AuthPage isLoginMode={false}></AuthPage>}
-      ></Route>
+      <Route path="/login" element={<AuthPage setUser={setUser}/>}></Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

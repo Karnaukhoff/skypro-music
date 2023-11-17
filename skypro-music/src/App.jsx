@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
 `
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(localStorage.getItem("user") || null);
   const [tracks, setTracks] = useState([]);
   const [currentTrack, setCurrentTrack] = useState (null);
   const [loading, setloading] = useState (false);
