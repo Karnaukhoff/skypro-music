@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import * as S from "./styles/LogIn.styled";
 import { useEffect, useState } from "react";
-import { signIn } from "../api/api";
+import { login, signUp } from "../api/api";
 
 export default function AuthPage({setUser}) {
   const [error, setError] = useState(null);
@@ -24,7 +24,7 @@ export default function AuthPage({setUser}) {
       return
     }
     
-    signIn({email, password})
+    login({email, password})
     .then((user) => {
       if (user.detail === "Пользователь с таким email или паролем не найден"){
         setError(user.detail)
@@ -39,9 +39,42 @@ export default function AuthPage({setUser}) {
       })
   };
 
-  const handleRegister = async () => {
-    alert(`Выполняется регистрация: ${email} ${password}`); //сделать регистрацию
-    setError("Неизвестная ошибка регистрации");
+  const handleRegister = async ({email, password, repeatPassword}) => {
+    setLoading(true)
+    if (email === ""){
+      setError("Укажите почту")
+      setLoading(false)
+      return
+    }
+    if (password === ""){
+      setError("Укажите пароль")
+      setLoading(false)
+      return
+    }
+    if (password !== repeatPassword){
+      setError("Пароли не совпадают")
+      setLoading(false)
+      return
+    }
+    signUp({email, password})
+    .then((user) => {
+      if (user.email === "Пользователь с таким адрес электронной почты уже существует."){
+        setError(user.email)
+        return
+      }
+      if (user.username === "Пользователь с таким именем уже существует."){
+        setError(user.username)
+        return
+      }
+      if (user.password !== password && user.password !== undefined){
+        setError(user.password[0])
+        return
+      }
+      window.location.href="/login"
+    })
+    .finally(() => {
+      setLoading(false)
+    })
   };
 
   // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
@@ -84,7 +117,7 @@ export default function AuthPage({setUser}) {
               <S.PrimaryButton disabled={loading} onClick={() => handleLogin({ email, password })}>
                 Войти
               </S.PrimaryButton>
-              <S.SecondaryButton onClick={() => setIsLoginMode(!isLoginMode)}>Зарегистрироваться</S.SecondaryButton>
+              <S.SecondaryButton disabled={loading} onClick={() => setIsLoginMode(!isLoginMode)}>Зарегистрироваться</S.SecondaryButton>
             </S.Buttons>
           </>
         ) : (
@@ -120,7 +153,7 @@ export default function AuthPage({setUser}) {
             </S.Inputs>
             {error && <S.Error>{error}</S.Error>}
             <S.Buttons>
-              <S.PrimaryButton onClick={handleRegister}>
+              <S.PrimaryButton disabled={loading} onClick={() => handleRegister({email, password, repeatPassword})}>
                 Зарегистрироваться
               </S.PrimaryButton>
             </S.Buttons>
