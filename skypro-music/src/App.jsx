@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import React from "react";
 import { useState, useEffect } from "react";
 import { getAllTracks } from "./api/api";
+import Context from "./context"
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -37,8 +38,10 @@ function App() {
   }, [])
   return (
     <>
-    <GlobalStyle />
-    <AppRoutes user={user} setUser={setUser} loading = {loading}  tracks = {tracks} setTracks = {setTracks}  tracksError={tracksError} setCurrentTrack = {setCurrentTrack} currentTrack={currentTrack}/>
+    <Context.Provider value={{ user, setUser }}>
+      <GlobalStyle />
+      <AppRoutes user={user} setUser={setUser} loading = {loading}  tracks = {tracks} setTracks = {setTracks}  tracksError={tracksError} setCurrentTrack = {setCurrentTrack} currentTrack={currentTrack}/>
+    </Context.Provider>
     </>
   );
 }
