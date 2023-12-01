@@ -3,21 +3,26 @@ import * as S from "./Bar.styles";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useRef, useState, useEffect } from "react";
+import { useDispatch/*, useSelector */} from "react-redux";
+import { setIsPlaying } from "../../store/slices/trackSlice";
 
 function Bar({loading, currentTrack}) {
   const [isPlaying, setPlaying] = useState(false);
+  const dispatch = useDispatch()
+  //const isPlayingRedux = useSelector(setIsPlaying);
   const [isRepeat, setIsRepeat] = useState(false);
   const ref = useRef(null);
 
   const handleStart = () => {
     ref.current.play();
+    //dispatch(setIsPlaying(true))
   };
 
   useEffect(handleStart, [currentTrack]) //запуск при клике
 
-
   const handleStop = () => {
     ref.current.pause();
+    //dispatch(setIsPlaying(false))
   };
 
   const handleRepeat = () => {
@@ -70,7 +75,10 @@ function Bar({loading, currentTrack}) {
               </S.BarPlayerBtnPrev>
               {
                   isPlaying ?
-                <S.BarPlayerBtnPlay onClick={handleStop}>
+                <S.BarPlayerBtnPlay onClick={() =>{
+                  handleStop();
+                  dispatch(setIsPlaying(false))}
+                  }>
                   <S.BarPlayerBtnPlaySvg alt="play">
                     <svg width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <rect width="5" height="19" fill="#D9D9D9" />
@@ -79,7 +87,10 @@ function Bar({loading, currentTrack}) {
                   </S.BarPlayerBtnPlaySvg>
                 </S.BarPlayerBtnPlay> 
                 :
-                <S.BarPlayerBtnPlay onClick={handleStart}>
+                <S.BarPlayerBtnPlay onClick={() => {
+                  handleStart();
+                  dispatch(setIsPlaying(true))}
+                  }>
                 <S.BarPlayerBtnPlaySvg alt="play">
                   <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
                 </S.BarPlayerBtnPlaySvg>

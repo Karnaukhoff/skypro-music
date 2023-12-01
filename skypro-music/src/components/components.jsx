@@ -1,23 +1,35 @@
 import React from "react";
 import 'react-loading-skeleton/dist/skeleton.css';
 import * as S from "./components.styles"
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentTrackRedux/*, setIsPlaying */} from "../store/slices/trackSlice";
 
-export default function Track({item, setCurrentTrack}) {
+export default function Track({item/*, setCurrentTrack*/}) {
+  const dispatch = useDispatch()
+  const currentTrack = useSelector((state) => state.playlist.currentTrack)
+  const isPlaying = useSelector((state) => state.playlist.isPlaying);
+
   function time(sec){
     if (sec%60 >= 10){return `${Math.floor(sec/60)}.${sec%60}`}
     else {return `${Math.floor(sec/60)}.0${sec%60}`}
   }
+
   return (
   <S.PlaylistItem>
     <S.PlaylistTrack>
       <S.TrackTitle>
         <S.TrackTitleImage>
+          {/*currentTrack?.id === item.id &&*/currentTrack && currentTrack.id === item.id ? (
+            <S.PointPlaying $playing={isPlaying} />
+          ) : (
             <S.TrackTitleSvg alt="music">
               <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
             </S.TrackTitleSvg>
+          )}
+            
         </S.TrackTitleImage>
         <S.TrackTitleText>
-          <S.TrackTitleLink onClick={() => {setCurrentTrack(item)}}>
+          <S.TrackTitleLink onClick={() => {/*setCurrentTrack(item)*/dispatch(setCurrentTrackRedux(item))}}>
             {item.name} <S.TrackTitleSpan></S.TrackTitleSpan>
           </S.TrackTitleLink>
         </S.TrackTitleText>

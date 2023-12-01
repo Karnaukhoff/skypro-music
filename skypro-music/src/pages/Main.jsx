@@ -10,10 +10,11 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import GlobalStyle from "./styles/Main.styles";
 import { useContext } from "react";
 import Context from "../context"
+import { useSelector } from "react-redux";
 
 export const Main = () => {
-  const { user, setUser, loading, tracks, tracksError, currentTrack, setCurrentTrack } = useContext(Context)
-
+  const { user, setUser, loading, tracks, tracksError/*, currentTrack, setCurrentTrack */} = useContext(Context)
+  const currentTrack = useSelector((state) => state.playlist.currentTrack)
   return (
     <S.wrapper>
       <GlobalStyle />
@@ -24,7 +25,7 @@ export const Main = () => {
             <Search />
             <S.centoblockTittle>Треки</S.centoblockTittle>
             <Filter />
-            {tracksError ? (<p>Не удалось загрузить плейлист, попробуйте позже</p>) : (<TreckList tracks={tracks} loading={loading} setCurrentTrack = {setCurrentTrack }/> )}
+            {tracksError ? (<p>Не удалось загрузить плейлист, попробуйте позже</p>) : (<TreckList tracks={tracks} loading={loading} /*setCurrentTrack = {setCurrentTrack }*//> )}
           </S.centroblock>
           <Sidebar loading={loading}/>
         </S.main>

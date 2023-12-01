@@ -2,9 +2,12 @@ import React from "react";
 import * as S from "./TreckList.styles"
 import Track from "../components";
 import { Loading } from "../loading";
+import { useDispatch } from "react-redux";
+import { setIsPlaying } from "../../store/slices/trackSlice";
 
 
-function TreckList({tracks, loading, setCurrentTrack }) {
+function TreckList({tracks, loading/*, setCurrentTrack */}) {
+  const dispatch = useDispatch()
   return (
     <S.CenterblockContent>
       <S.ContentTitle>
@@ -25,13 +28,15 @@ function TreckList({tracks, loading, setCurrentTrack }) {
           </S.Col04>
         </S.PlaylistTitleCol>
       </S.ContentTitle>
-      <S.ContentPlaylistItems>
+      <S.ContentPlaylistItems onClick={() => {
+        dispatch(setIsPlaying(true))
+      }}>
       {
         loading ? (
           Loading()
         ) : (
         tracks.map((item) => {
-          return Track({item, setCurrentTrack}) 
+          return Track({item/*, setCurrentTrack*/}) 
         }))
       }
       </S.ContentPlaylistItems>
