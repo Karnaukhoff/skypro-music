@@ -12,10 +12,10 @@ export const trackSlice = createSlice({
             state.currentTrack = action.payload
         },
         setIsPlaying: (state, action) => {
-            state.isPlaying = action.payload;
-          }
+            state.isPlaying = action.payload
+        }
     }
 })
 
-export const {setCurrentTrackRedux, setIsPlaying} = trackSlice.actions
+export const {setCurrentTrackRedux, setIsPlaying, tracksRedux} = trackSlice.actions
 export default trackSlice.reducer

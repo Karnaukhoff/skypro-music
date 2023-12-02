@@ -3,32 +3,37 @@ import * as S from "./Bar.styles";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useRef, useState, useEffect } from "react";
-import { useDispatch/*, useSelector */} from "react-redux";
-import { setIsPlaying } from "../../store/slices/trackSlice";
+import { useDispatch} from "react-redux";
+import { setCurrentTrackRedux, setIsPlaying } from "../../store/slices/trackSlice";
+import Context from "../../context"
+import { useContext } from "react";
 
 function Bar({loading, currentTrack}) {
+  const { tracks } = useContext(Context)
   const [isPlaying, setPlaying] = useState(false);
   const dispatch = useDispatch()
-  //const isPlayingRedux = useSelector(setIsPlaying);
   const [isRepeat, setIsRepeat] = useState(false);
+  const [isShuffle, setIsShuffle] = useState(false);
   const ref = useRef(null);
 
   const handleStart = () => {
     ref.current.play();
-    //dispatch(setIsPlaying(true))
   };
 
   useEffect(handleStart, [currentTrack]) //запуск при клике
 
   const handleStop = () => {
     ref.current.pause();
-    //dispatch(setIsPlaying(false))
   };
 
   const handleRepeat = () => {
     ref.current.loop = !isRepeat;
     setIsRepeat(!isRepeat)
   };
+
+  const handleShuffle = () => {
+    setIsShuffle(!isShuffle)
+  }
 
   function Time(sec){
     if (sec%60 >= 10){return `${Math.floor(sec/60)}:${Math.floor(sec%60)}`}
@@ -45,6 +50,37 @@ function Bar({loading, currentTrack}) {
     }, 1000);
     return () => clearTimeout(interval);
   }, [currentTrack]) //время
+
+  function whatIsTrack(){
+    for(let i = 0; i <= tracks.length - 1; i++){
+      if (tracks[i] === currentTrack){
+        return i
+      }
+    }
+  }
+
+  const nextTrack = () => {
+    let index = whatIsTrack()
+    if (isShuffle === true){
+      dispatch(setCurrentTrackRedux(tracks[Math.floor(Math.random() * tracks.length)]))
+    }
+    else if (index !== (tracks.length - 1)){
+      dispatch(setCurrentTrackRedux(tracks[index + 1]))
+    }
+  }
+
+  const previousTrack = () => {
+    let index = whatIsTrack()
+    if (currentTime > 4){
+      ref.current.currentTime = 0
+    }
+    else if (isShuffle === true){
+      dispatch(setCurrentTrackRedux(tracks[Math.floor(Math.random() * tracks.length)]))
+    }
+    else if (index !== 0 && currentTime <= 4){
+      dispatch(setCurrentTrackRedux(tracks[index - 1]))
+    }
+  }
 
   return (
   <>
@@ -68,7 +104,9 @@ function Bar({loading, currentTrack}) {
         <S.BarPlayerBlock>
           <S.BarPlayer>
             <S.BarPlayerControls>
-              <S.BarPlayerBtnPrev>
+              <S.BarPlayerBtnPrev onClick={() => {
+                previousTrack()
+                }}>
                 <S.BarBtnPrevSvg alt="prev">
                   <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                 </S.BarBtnPrevSvg>
@@ -96,7 +134,9 @@ function Bar({loading, currentTrack}) {
                 </S.BarPlayerBtnPlaySvg>
               </S.BarPlayerBtnPlay> 
               }
-              <S.BarPlayerBtnNext>
+              <S.BarPlayerBtnNext onClick={() => {
+                nextTrack()
+              }}>
                 <S.BarPlayerBtnNextSvg alt="next">
                   <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                 </S.BarPlayerBtnNextSvg>
@@ -115,11 +155,21 @@ function Bar({loading, currentTrack}) {
                     </S.PlayerBtnRepeatSvg>
                   </S.PlayerBtnRepeat>
                 }
-              <S.BarPlayerBtnIconHover>
-                <S.BarPlayerBtnShuffleSvg alt="shuffle">
-                  <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
-                </S.BarPlayerBtnShuffleSvg>
-              </S.BarPlayerBtnIconHover>
+              {
+                isShuffle ?
+                  <S.BarPlayerBtnIconHover onClick={handleShuffle}>
+                    <S.BarPlayerBtnShuffleActiveSvg alt="shuffle">
+                      <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
+                    </S.BarPlayerBtnShuffleActiveSvg>
+                  </S.BarPlayerBtnIconHover>
+              :
+                  <S.BarPlayerBtnIconHover onClick={handleShuffle}>
+                    <S.BarPlayerBtnShuffleSvg alt="shuffle">
+                      <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
+                    </S.BarPlayerBtnShuffleSvg>
+                  </S.BarPlayerBtnIconHover>
+              }
+
             </S.BarPlayerControls>
 
             <S.PlayerTrackPlay>
