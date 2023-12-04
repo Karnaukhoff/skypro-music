@@ -18,6 +18,8 @@ function App() {
   const [loading, setloading] = useState (false);
   const [tracksError, setTracksError] = useState(null)
 
+
+
   useEffect(() => {
   async function Tracks (){
   try {
@@ -33,8 +35,9 @@ function App() {
   }
 
   }
-    Tracks ()
+    Tracks()
   }, [])
+
   return (
     <>
     <Context.Provider value={{ user, setUser, loading, tracks, tracksError}}>

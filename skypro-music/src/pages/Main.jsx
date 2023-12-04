@@ -11,11 +11,16 @@ import GlobalStyle from "./styles/Main.styles";
 import { useContext } from "react";
 import Context from "../context"
 import { useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
+import { tracksRedux } from "../store/slices/trackSlice";
 
 export const Main = () => {
   const { user, setUser, loading, tracks, tracksError } = useContext(Context)
   const currentTrack = useSelector((state) => state.playlist.currentTrack)
-  
+  const songs = useSelector((state) => state.playlist.tracks)
+  const dispatch = useDispatch()
+  dispatch(tracksRedux(tracks))
+
   return (
     <S.wrapper>
       <GlobalStyle />
@@ -26,7 +31,7 @@ export const Main = () => {
             <Search />
             <S.centoblockTittle>Треки</S.centoblockTittle>
             <Filter />
-            {tracksError ? (<p>Не удалось загрузить плейлист, попробуйте позже</p>) : (<TreckList tracks={tracks} loading={loading} /> )}
+            {tracksError ? (<p>Не удалось загрузить плейлист, попробуйте позже</p>) : (<TreckList tracks={songs} loading={loading} /> )}
           </S.centroblock>
           <Sidebar loading={loading}/>
         </S.main>

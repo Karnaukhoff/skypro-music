@@ -1,7 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit"
 const initialState = {
     currentTrack: null,
-    isPlaying: false
+    isPlaying: false,
+    nextTrack: null,
+    tracks: [],
+    //shuffle: false
 }
 
 export const trackSlice = createSlice({
@@ -13,9 +16,15 @@ export const trackSlice = createSlice({
         },
         setIsPlaying: (state, action) => {
             state.isPlaying = action.payload
-        }
+        },
+        tracksRedux: (state, action) => {
+            state.tracks = action.payload
+        },
+        setNextTrack: (state, action) => {
+            state.nextTrack = action.payload
+        },
     }
 })
 
-export const {setCurrentTrackRedux, setIsPlaying, tracksRedux} = trackSlice.actions
+export const {setCurrentTrackRedux, setIsPlaying, tracksRedux, setNextTrack} = trackSlice.actions
 export default trackSlice.reducer
