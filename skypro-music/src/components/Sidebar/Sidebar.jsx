@@ -34,11 +34,11 @@ function Sidebar({loading}) {
                 {loading ? (
                     <Skeleton />
                   ) : (
-                      <S.SidebarLink href="/#">
-                        <Link to={'/categorySongs/1'}>
+                        <Link to={'/categorySongs/1'} style={
+                          {width: "100%", height: "100%"}
+                        }>
                           <S.SidebarImg src="img/playlist01.png" alt="day's playlist" />
                         </Link>
-                      </S.SidebarLink>
                       )
                   }
               </SkeletonTheme>
@@ -53,11 +53,11 @@ function Sidebar({loading}) {
                 {loading ? (
                     <Skeleton />
                   ) : (
-                      <S.SidebarLink href="/#">
-                        <Link to={'/categorySongs/2'}>
+                        <Link to={'/categorySongs/2'} style={
+                          {width: "100%", height: "100%"}
+                        }>
                           <S.SidebarImg src="img/playlist02.png" alt="day's playlist" />
                         </Link>
-                      </S.SidebarLink>
                       )
                   }
               </SkeletonTheme>
@@ -72,11 +72,11 @@ function Sidebar({loading}) {
                 {loading ? (
                     <Skeleton />
                   ) : (
-                      <S.SidebarLink href="/#">
-                        <Link to={'/categorySongs/3'}>
+                        <Link to={'/categorySongs/3'} style={
+                          {width: "100%", height: "100%"}
+                        }>
                           <S.SidebarImg src="img/playlist03.png" alt="day's playlist" />
                         </Link>
-                      </S.SidebarLink>
                       )
                   }
               </SkeletonTheme>

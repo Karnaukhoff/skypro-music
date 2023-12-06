@@ -31,10 +31,13 @@ function TreckList({tracks, loading}) {
       <S.ContentPlaylistItems onClick={() => {dispatch(setIsPlaying(true))}}>
       {
         loading ? (
-          Loading()
+          <Loading />
+          //Loading()
         ) : (
         tracks.map((item) => {
-          return Track({item}) 
+          return <Track item={item} key={item.id}/>
+          /*Track({item}) */
+          
         }))
       }
       </S.ContentPlaylistItems>

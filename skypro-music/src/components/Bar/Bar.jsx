@@ -4,10 +4,9 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useRef, useState, useEffect } from "react";
 import { useDispatch} from "react-redux";
-import { setCurrentTrackRedux, setIsPlaying, setNextTrack } from "../../store/slices/trackSlice";
+import { setCurrentTrackRedux, setIsPlaying } from "../../store/slices/trackSlice";
 import Context from "../../context"
 import { useContext } from "react";
-import { useSelector } from "react-redux";
 
 function Bar({loading, currentTrack}) {
   const { tracks } = useContext(Context)
@@ -16,7 +15,6 @@ function Bar({loading, currentTrack}) {
   const [isRepeat, setIsRepeat] = useState(false);
   const [isShuffle, setIsShuffle] = useState(false);
   const ref = useRef(null);
-  const queueTrack = useSelector((state) => state.playlist.nextTrack)
 
   const handleStart = () => {
     ref.current.play();
@@ -72,21 +70,8 @@ function Bar({loading, currentTrack}) {
     }
     else if (index !== (tracks.length - 1)){
       dispatch(setCurrentTrackRedux(tracks[index + 1]))
-    }
+    } else {dispatch(setIsPlaying(false))}
   }
-
-  const queue = () => {
-    dispatch(setIsPlaying(true))
-    let index = whatIsTrack()
-    if (isShuffle === true){
-      dispatch(setNextTrack(tracks[Math.floor(Math.random() * tracks.length)]))
-    }
-    else if (index !== (tracks.length - 1)){
-      dispatch(setNextTrack(tracks[index + 1]))
-    }
-  }
-
-  setTimeout(() => queue(), 3000)
 
   const previousTrack = () => {
     let index = whatIsTrack()
@@ -101,15 +86,12 @@ function Bar({loading, currentTrack}) {
     }
   }
 
-
-  if (currentTime === duration && currentTime !== 0){
-    let index = whatIsTrack()
-    if (index === (tracks.length - 1)){
-      dispatch(setIsPlaying(false))
-      return
-    }
-    dispatch(setCurrentTrackRedux(queueTrack))
-  }
+  useEffect(() => {
+    if (currentTime === duration && currentTime !== 0){
+      nextTrack()
+     }
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [currentTime])
   
   return (
     <>

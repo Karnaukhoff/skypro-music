@@ -5,7 +5,7 @@ function Search() {
   return (
     <S.centroblockSearch>
       <S.searchSvg>
-        <use xlinkHrefHref="img/icon/sprite.svg#icon-search"></use>
+        <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
       </S.searchSvg>
       <S.searchText
         type="search"
