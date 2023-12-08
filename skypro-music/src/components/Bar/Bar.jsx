@@ -18,7 +18,7 @@ function Bar({loading, currentTrack}) {
 
   const handleStart = () => {
     ref.current.play();
-  };
+}
 
   useEffect(handleStart, [currentTrack]) //запуск при клике
 
