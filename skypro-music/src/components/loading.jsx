@@ -1,7 +1,7 @@
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import React from "react";
 import 'react-loading-skeleton/dist/skeleton.css';
-import * as S from "./components.styles"
+import * as S from "./Track/Track.styled"
 
 export function Loading(){
     return(

@@ -15,9 +15,10 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   const [user, setUser] = useState(localStorage.getItem("user") || null);
   const [tracks, setTracks] = useState([]);
-  const [currentTrack, setCurrentTrack] = useState (null);
   const [loading, setloading] = useState (false);
   const [tracksError, setTracksError] = useState(null)
+
+
 
   useEffect(() => {
   async function Tracks (){
@@ -34,11 +35,12 @@ function App() {
   }
 
   }
-    Tracks ()
+    Tracks()
   }, [])
+
   return (
     <>
-    <Context.Provider value={{ user, setUser, loading, tracks, tracksError, currentTrack, setCurrentTrack }}>
+    <Context.Provider value={{ user, setUser, loading, tracks, tracksError}}>
       <GlobalStyle />
       <AppRoutes/>
     </Context.Provider>

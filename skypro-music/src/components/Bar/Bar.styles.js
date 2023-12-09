@@ -115,11 +115,11 @@ export const BarPlayerBtnIconHover = styled(
   PlayerBtnRepeat,
   BarPlayerBtnShuffle
 )`
-  &:hover svg {
-    fill: transparent;
-    stroke: #acacac;
-    cursor: pointer;
-  }
+&:hover svg {
+  fill: transparent;
+  stroke: #acacac;
+  cursor: pointer;
+}
 `;
 export const BarPlayerBtnPlaySvg = styled.svg`
   width: 22px;
@@ -145,6 +145,16 @@ export const BarPlayerBtnShuffleSvg = styled.svg`
   height: 12px;
   fill: transparent;
   stroke: #696969;
+`;
+export const BarPlayerBtnShuffleActiveSvg = styled.svg`
+  width: 19px;
+  height: 12px;
+  fill: transparent;
+  stroke: #ffffff;
+  &:hover  {
+    fill: transparent;
+    stroke: #ffffff;
+  }
 `;
 export const PlayerTrackPlay = styled.div`
   display: -webkit-box;
