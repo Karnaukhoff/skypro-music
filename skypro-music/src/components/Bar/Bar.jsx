@@ -18,12 +18,15 @@ function Bar({loading, currentTrack}) {
 
   const handleStart = () => {
     ref.current.play();
+    dispatch(setIsPlaying(true));
 }
 
-  useEffect(handleStart, [currentTrack]) //запуск при клике
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  //useEffect(handleStart, [currentTrack]) //запуск при клике
 
   const handleStop = () => {
     ref.current.pause();
+    dispatch(setIsPlaying(false));
   };
 
   const handleRepeat = () => {
@@ -100,7 +103,8 @@ function Bar({loading, currentTrack}) {
         src={currentTrack.track_file}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
-        autoPlay
+        /*autoPlay*/
+        onCanPlayThrough={handleStart}
       ></audio>
       <S.Bar>
         <S.BarContent>
