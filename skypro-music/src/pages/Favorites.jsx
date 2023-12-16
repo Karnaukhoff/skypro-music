@@ -1,27 +1,37 @@
 import * as S from "./styles/Main.styles";
-import React/*, { useEffect } */from "react";
-
-//import TreckList from "../components/TreckList/TreckList";
+import React, { useEffect } from "react";
 import GlobalStyle from "./styles/Main.styles";
-/*import { useContext } from "react";
-import Context from "../context";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { tracksRedux } from "../store/slices/trackSlice";*/
+import { useSelector, useDispatch } from "react-redux";
+import { getFavoriteTracks } from "../api/api";
+import { favoritesRedux } from "../store/slices/trackSlice";
+import Track from "../components/Track/Track";
+
 
 export const Favorites = () => {
-  //const { loading, tracks, tracksError } = useContext(Context);
-  //const songs = useSelector((state) => state.playlist.tracks);
-  //const dispatch = useDispatch();
-  /*useEffect(() => {
-    if (tracks.length) dispatch(tracksRedux(tracks));
-  }, [dispatch, tracks]);*/
+  const dispatch = useDispatch()
+  const token = useSelector((state) => state.auth.access.access)
+  const favoriteTracks = useSelector((state) => state.playlist.favorites)
+
+  useEffect(() => {
+    ( async () => {const tracks = await getFavoriteTracks(token)
+      console.log(tracks)
+      dispatch(favoritesRedux(tracks))
+    })()
+    // eslint-disable-next-line
+  }, [])
 
   return (
     <>
         <GlobalStyle />
         <S.centoblockTittle>Мои Треки</S.centoblockTittle>
-        <p>В этом плейлисте нет треков</p>
+        {
+          favoriteTracks.length > 0 ?
+          favoriteTracks.map((item) => {
+            return <Track item={item} key={item.id}/>
+          })
+          :
+          <p>В данном плейлисте треков нет</p>
+        }
   </>
   );
 };

@@ -1,19 +1,39 @@
-import React from "react";
 import 'react-loading-skeleton/dist/skeleton.css';
 import * as S from "./Track.styled"
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentTrackRedux } from "../../store/slices/trackSlice";
 import { useState } from "react";
+import React from "react";
+import { addFavoriteTrack, removeFavoriteTracks } from "../../api/api";
 
 export default function Track({item}) {
     const dispatch = useDispatch()
     const currentTrack = useSelector((state) => state.playlist.currentTrack)
     const isPlaying = useSelector((state) => state.playlist.isPlaying);
-    const [isLiked, setIsLiked] = useState(false);
+    const token = useSelector((state) => state.auth.access.access)
+    const favoriteTracks = useSelector((state) => state.playlist.favorites)
+
+    let stateLike = false
+    if (favoriteTracks.includes(item)){
+      stateLike = true
+    } else {
+      stateLike = false
+    }
+    const [isLiked, setIsLiked] = useState(stateLike);
   
     function time(sec){
       if (sec%60 >= 10){return `${Math.floor(sec/60)}.${sec%60}`}
       else {return `${Math.floor(sec/60)}.0${sec%60}`}
+    }
+
+    function handleFavorite({trackId, token}){
+      console.log(token)
+      addFavoriteTrack(trackId, token)
+      //добавить в redux
+    }
+
+    function handleUnlike({trackId, token}){
+      removeFavoriteTracks(trackId, token)
     }
   
     return (
@@ -49,7 +69,10 @@ export default function Track({item}) {
         <S.TrackTime>
           {
             isLiked ? (
-              <S.TrackTimeSvg alt="time" onClick={() => setIsLiked(false)}>
+              <S.TrackTimeSvg alt="time" onClick={() => {
+                setIsLiked(false)
+                handleUnlike({trackId: item.id, token})
+                }}>
               <svg
                 width="14"
                 height="12"
@@ -68,7 +91,10 @@ export default function Track({item}) {
               </svg>
               </S.TrackTimeSvg>
             ) : (
-              <S.TrackTimeSvg alt="time" onClick={() => setIsLiked(true)}>
+              <S.TrackTimeSvg alt="time" onClick={() => {
+                setIsLiked(true)
+                handleFavorite({trackId: item.id, token})
+                }}>
                 <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
               </S.TrackTimeSvg>
             )

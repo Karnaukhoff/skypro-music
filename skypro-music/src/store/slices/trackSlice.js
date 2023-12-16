@@ -3,7 +3,7 @@ const initialState = {
     currentTrack: null,
     isPlaying: false,
     tracks: [],
-    //shuffle: false
+    favorites: [],
 }
 
 export const trackSlice = createSlice({
@@ -19,8 +19,11 @@ export const trackSlice = createSlice({
         tracksRedux: (state, action) => {
             state.tracks = action.payload
         },
+        favoritesRedux: (state, action) => {
+            state.favorites = action.payload
+        },
     }
 })
 
-export const {setCurrentTrackRedux, setIsPlaying, tracksRedux} = trackSlice.actions
+export const {setCurrentTrackRedux, setIsPlaying, tracksRedux, favoritesRedux} = trackSlice.actions
 export default trackSlice.reducer

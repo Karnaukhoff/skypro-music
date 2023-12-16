@@ -9,6 +9,7 @@ import Context from "../context";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { tracksRedux } from "../store/slices/trackSlice";
+import { setAccess, setRefresh, setUserData } from "../store/slices/authSlice";
 
 export const Main = () => {
   const { loading, tracks, tracksError } = useContext(Context);
@@ -17,6 +18,16 @@ export const Main = () => {
   useEffect(() => {
     if (tracks.length) dispatch(tracksRedux(tracks));
   }, [dispatch, tracks]);
+
+  useEffect(() => {
+    if (localStorage.getItem("authData") !== null) {
+      let authData = JSON.parse(localStorage.getItem("authData"));
+      dispatch(setUserData(authData.user));
+      dispatch(setRefresh(authData.refresh));
+      dispatch(setAccess(authData.access));
+    }
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>

@@ -1,15 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as S from "./styles/LogIn.styled";
 import { useEffect, useState } from "react";
 import { login, signUp } from "../api/api";
+import { getToken } from "../api/api";
+import { useDispatch} from "react-redux";
+import { setAccess, setRefresh, setUserData } from "../store/slices/authSlice";
 
-export default function AuthPage({setUser}) {
+export default function AuthPage() {
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [loading, setLoading] = useState(false)
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const handleLogin = async ({ email, password }) => {
     setLoading(true)
@@ -25,17 +30,26 @@ export default function AuthPage({setUser}) {
     }
     
     login({email, password})
-    .then((user) => {
+    .then(async (user) => {
       if (user.detail === "Пользователь с таким email или паролем не найден"){
         setError(user.detail)
         return
       }
-      setUser(user.username)
-      localStorage.setItem("user", user.username);
-      window.location.href="/"
+      
+      const tokenData = await getToken({email, password})
+      let authData = {
+        user: user,
+        refresh: tokenData,
+        access: tokenData,
+      }
+      localStorage.setItem("authData", JSON.stringify(authData))
+      dispatch(setUserData(user))
+      dispatch(setRefresh(tokenData.refresh))
+      dispatch(setAccess(tokenData.access))
+      navigate("/")
       })
-      .finally(() => {
-        setLoading(false)
+    .finally(() => {
+      setLoading(false)
       })
   };
 

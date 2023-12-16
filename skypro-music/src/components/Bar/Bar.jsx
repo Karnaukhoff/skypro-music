@@ -103,7 +103,6 @@ function Bar({loading, currentTrack}) {
         src={currentTrack.track_file}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
-        /*autoPlay*/
         onCanPlayThrough={handleStart}
       ></audio>
       <S.Bar>
