@@ -9,7 +9,7 @@ import Context from "../../context"
 import { useContext } from "react";
 
 function Bar({loading, currentTrack}) {
-  const { tracks } = useContext(Context)
+  const { /*tracks,*/ isPlaylist } = useContext(Context)
   const [isPlaying, setPlaying] = useState(false);
   const dispatch = useDispatch()
   const [isRepeat, setIsRepeat] = useState(false);
@@ -59,8 +59,8 @@ function Bar({loading, currentTrack}) {
   }, [currentTrack]) //время
 
   function whatIsTrack(){
-    for(let i = 0; i <= tracks.length - 1; i++){
-      if (tracks[i] === currentTrack){
+    for(let i = 0; i <= isPlaylist.length - 1; i++){
+      if (isPlaylist[i] === currentTrack){
         return i
       }
     }
@@ -69,10 +69,10 @@ function Bar({loading, currentTrack}) {
   const nextTrack = () => {
     let index = whatIsTrack()
     if (isShuffle === true){
-      dispatch(setCurrentTrackRedux(tracks[Math.floor(Math.random() * tracks.length)]))
+      dispatch(setCurrentTrackRedux(isPlaylist[Math.floor(Math.random() * isPlaylist.length)]))
     }
-    else if (index !== (tracks.length - 1)){
-      dispatch(setCurrentTrackRedux(tracks[index + 1]))
+    else if (index !== (isPlaylist.length - 1)){
+      dispatch(setCurrentTrackRedux(isPlaylist[index + 1]))
     } else {dispatch(setIsPlaying(false))}
   }
 
@@ -82,10 +82,10 @@ function Bar({loading, currentTrack}) {
       ref.current.currentTime = 0
     }
     else if (isShuffle === true){
-      dispatch(setCurrentTrackRedux(tracks[Math.floor(Math.random() * tracks.length)]))
+      dispatch(setCurrentTrackRedux(isPlaylist[Math.floor(Math.random() * isPlaylist.length)]))
     }
     else if (index !== 0 && currentTime <= 4){
-      dispatch(setCurrentTrackRedux(tracks[index - 1]))
+      dispatch(setCurrentTrackRedux(isPlaying[index - 1]))
     }
   }
 

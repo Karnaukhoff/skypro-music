@@ -12,11 +12,15 @@ import { tracksRedux } from "../store/slices/trackSlice";
 import { setAccess, setRefresh, setUserData } from "../store/slices/authSlice";
 
 export const Main = () => {
-  const { loading, tracks, tracksError } = useContext(Context);
+  const { loading, tracks, tracksError, setPlaylist } = useContext(Context);
   const songs = useSelector((state) => state.playlist.tracks);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (tracks.length) dispatch(tracksRedux(tracks));
+    if (tracks.length) {
+      dispatch(tracksRedux(tracks))
+      setPlaylist(tracks)
+    };
+    // eslint-disable-next-line
   }, [dispatch, tracks]);
 
   useEffect(() => {

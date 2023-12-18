@@ -5,9 +5,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { getFavoriteTracks } from "../api/api";
 import { favoritesRedux } from "../store/slices/trackSlice";
 import Track from "../components/Track/Track";
+import Context from "../context"
+import { useContext } from "react";
 
 
 export const Favorites = () => {
+  const { setPlaylist } = useContext(Context)
   const dispatch = useDispatch()
   const token = useSelector((state) => state.auth.access.access)
   const favoriteTracks = useSelector((state) => state.playlist.favorites)
@@ -16,6 +19,7 @@ export const Favorites = () => {
     ( async () => {const tracks = await getFavoriteTracks(token)
       console.log(tracks)
       dispatch(favoritesRedux(tracks))
+      setPlaylist(tracks)
     })()
     // eslint-disable-next-line
   }, [])

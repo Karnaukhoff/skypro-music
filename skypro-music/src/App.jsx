@@ -16,12 +16,11 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   const [user, setUser] = useState(localStorage.getItem("user") || null);
-  //const user = useSelector((state) => state.auth.user)
   console.log(user)
   const [tracks, setTracks] = useState([]);
   const [loading, setloading] = useState(false);
   const [tracksError, setTracksError] = useState(null);
-  //const dispatch = useDispatch();
+  const [isPlaylist, setPlaylist] = useState();
 
   useEffect(() => {
     async function Tracks() {
@@ -40,19 +39,9 @@ function App() {
     Tracks();
   }, []);
 
-  /*useEffect(() => {
-    if (localStorage.getItem("authData") !== null) {
-      let authData = JSON.parse(localStorage.getItem("authData"));
-      dispatch(setUserData(authData.user));
-      dispatch(setRefresh(authData.refresh));
-      dispatch(setAccess(authData.access));
-    }
-    // eslint-disable-next-line
-  }, []);*/
-
   return (
     <>
-      <Context.Provider value={{ user, setUser, loading, tracks, tracksError }}>
+      <Context.Provider value={{ user, setUser, loading, tracks, tracksError, isPlaylist, setPlaylist }}>
         <GlobalStyle />
         <AppRoutes />
       </Context.Provider>

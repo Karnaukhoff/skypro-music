@@ -13,13 +13,27 @@ export default function Track({item}) {
     const token = useSelector((state) => state.auth.access.access)
     const favoriteTracks = useSelector((state) => state.playlist.favorites)
 
-    let stateLike = false
-    if (favoriteTracks.includes(item)){
-      stateLike = true
-    } else {
-      stateLike = false
+    let isFound = false
+    try{
+    isFound = favoriteTracks.some(element => {
+      if (element.id === item.id) {
+        return true;
+      } 
+  
+      return false;
+    });}
+    catch {
+      window.location.href="/login"
     }
-    const [isLiked, setIsLiked] = useState(stateLike);
+
+    const [isLiked, setIsLiked] = useState(isFound);
+
+    /*if (favoriteTracks.includes(item)){
+      setIsLiked(true)
+    } else {
+      setIsLiked(false)
+    }*/
+
   
     function time(sec){
       if (sec%60 >= 10){return `${Math.floor(sec/60)}.${sec%60}`}
