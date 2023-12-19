@@ -1,14 +1,22 @@
 import React from "react";
 import * as S from "./NavMenu.styles"
+import { useDispatch} from "react-redux";
+import { setAccess, setRefresh, setUserData } from "../../store/slices/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const { useState } = React;
 
 function NavMenu({ user, setUser }) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
   const [visible, setVisible] = useState(false);
   const toggleVisibility = () => setVisible(!visible);
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    setUser(null);
+  function handleLogout() {
+    localStorage.removeItem("authData")
+    dispatch(setUserData(null))
+    dispatch(setRefresh(""))
+    dispatch(setAccess(""))
+    navigate("/login")
   };
 
   return (
@@ -36,7 +44,7 @@ function NavMenu({ user, setUser }) {
               </S.MenuLink>
             </S.menuItem>
             <S.menuItem>
-              <S.MenuLink to="/login" onClick={user !== null && handleLogout}>
+              <S.MenuLink to="/login" onClick={/*user !== null &&  */() => handleLogout()}>
                 Выйти
               </S.MenuLink>
             </S.menuItem>

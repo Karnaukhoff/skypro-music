@@ -32,11 +32,9 @@ function TreckList({tracks, loading}) {
       {
         loading ? (
           <Loading />
-          //Loading()
         ) : (
         tracks.map((item) => {
           return <Track item={item} key={item.id}/>
-          /*Track({item}) */
           
         }))
       }

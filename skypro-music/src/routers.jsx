@@ -8,6 +8,7 @@ import React from "react";
 import AuthPage from "./pages/LogIn";
 import { useContext } from "react";
 import Context from "./context";
+import { Layout } from "./pages/layuot";
 
 export const AppRoutes = () => {
   const { user, setUser } = useContext(Context);
@@ -15,9 +16,11 @@ export const AppRoutes = () => {
   return (
     <Routes>
       <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
-        <Route path="/" element={<Main />} />
-        <Route path="/Favorites" element={<Favorites />} />
-        <Route path="/categorySongs/:id" element={<CategorySongs />} />
+        <Route path="/" element={<Layout />} >
+          <Route index element={<Main />} />
+          <Route path="Favorites" element={<Favorites />} />
+          <Route path="categorySongs/:id" element={<CategorySongs />} />
+        </Route>
       </Route>
       <Route path="/login" element={<AuthPage setUser={setUser} />}></Route>
       <Route path="*" element={<NotFound />} />
