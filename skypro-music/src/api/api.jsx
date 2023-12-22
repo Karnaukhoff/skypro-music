@@ -2,12 +2,11 @@ const baseURL = " https://skypro-music-api.skyeng.tech";
 
 export async function getAllTracks() {
   const response = await fetch(
-    "https://skypro-music-api.skyeng.tech/catalog/track/all/"
+    `${baseURL}/catalog/track/all/`
   );
   if (!response.ok) {
     throw new Error("Ошибка сервера");
   }
-  console.log(baseURL);
   const data = await response.json();
   return data;
 }
@@ -122,6 +121,39 @@ export async function getFavoriteTracks(token) {
   )
   const tracks = await response.json()
   return tracks
+}
+
+export async function getCatalog_1() {
+  const response = await fetch(
+    `${baseURL}/catalog/selection/1/`
+  );
+  if (!response.ok) {
+    throw new Error("Ошибка сервера");
+  }
+  const data = await response.json();
+  return data;
+}
+
+export async function getCatalog_2() {
+  const response = await fetch(
+    `${baseURL}/catalog/selection/2/`
+  );
+  if (!response.ok) {
+    throw new Error("Ошибка сервера");
+  }
+  const data = await response.json();
+  return data;
+}
+
+export async function getCatalog_3() {
+  const response = await fetch(
+    `${baseURL}/catalog/selection/3/`
+  );
+  if (!response.ok) {
+    throw new Error("Ошибка сервера");
+  }
+  const data = await response.json();
+  return data;
 }
 
 export async function removeFavoriteTracks(trackId, accessToken) {

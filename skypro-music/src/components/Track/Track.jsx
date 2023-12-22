@@ -27,13 +27,6 @@ export default function Track({item}) {
     }
 
     const [isLiked, setIsLiked] = useState(isFound);
-
-    /*if (favoriteTracks.includes(item)){
-      setIsLiked(true)
-    } else {
-      setIsLiked(false)
-    }*/
-
   
     function time(sec){
       if (sec%60 >= 10){return `${Math.floor(sec/60)}.${sec%60}`}
@@ -43,7 +36,6 @@ export default function Track({item}) {
     function handleFavorite({trackId, token}){
       console.log(token)
       addFavoriteTrack(trackId, token)
-      //добавить в redux
     }
 
     function handleUnlike({trackId, token}){

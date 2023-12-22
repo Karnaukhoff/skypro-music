@@ -4,6 +4,9 @@ const initialState = {
     isPlaying: false,
     tracks: [],
     favorites: [],
+    catalog_1: [],
+    catalog_2: [],
+    catalog_3: [],
 }
 
 export const trackSlice = createSlice({
@@ -22,8 +25,17 @@ export const trackSlice = createSlice({
         favoritesRedux: (state, action) => {
             state.favorites = action.payload
         },
+        catalogClassic: (state, action) => {
+            state.catalog_1 = action.payload
+        },
+        catalogElectro: (state, action) => {
+            state.catalog_2 = action.payload
+        },
+        catalogRock: (state, action) => {
+            state.catalog_3 = action.payload
+        },
     }
 })
 
-export const {setCurrentTrackRedux, setIsPlaying, tracksRedux, favoritesRedux} = trackSlice.actions
+export const {setCurrentTrackRedux, setIsPlaying, tracksRedux, favoritesRedux, catalogClassic, catalogElectro, catalogRock } = trackSlice.actions
 export default trackSlice.reducer

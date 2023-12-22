@@ -9,7 +9,7 @@ import Context from "../../context"
 import { useContext } from "react";
 
 function Bar({loading, currentTrack}) {
-  const { /*tracks,*/ isPlaylist } = useContext(Context)
+  const { isPlaylist } = useContext(Context)
   const [isPlaying, setPlaying] = useState(false);
   const dispatch = useDispatch()
   const [isRepeat, setIsRepeat] = useState(false);
