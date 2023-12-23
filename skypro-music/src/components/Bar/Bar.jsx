@@ -3,10 +3,11 @@ import * as S from "./Bar.styles";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useRef, useState, useEffect } from "react";
-import { useDispatch} from "react-redux";
 import { setCurrentTrackRedux, setIsPlaying } from "../../store/slices/trackSlice";
 import Context from "../../context"
 import { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavoriteTrack, removeFavoriteTracks } from "../../api/api";
 
 function Bar({loading, currentTrack}) {
   const { isPlaylist } = useContext(Context)
@@ -15,6 +16,7 @@ function Bar({loading, currentTrack}) {
   const [isRepeat, setIsRepeat] = useState(false);
   const [isShuffle, setIsShuffle] = useState(false);
   const ref = useRef(null);
+  const token = useSelector((state) => state.auth.access.access)
 
   const handleStart = () => {
     ref.current.play();
@@ -95,6 +97,32 @@ function Bar({loading, currentTrack}) {
      }
    // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [currentTime])
+
+   const favoriteTracks = useSelector((state) => state.playlist.favorites)
+
+    let isFound = false
+    try{
+    isFound = favoriteTracks.some(element => {
+      if (element.id === currentTrack.id) {
+        return true;
+      } 
+  
+      return false;
+    });}
+    catch {
+      window.location.href="/login"
+    }
+
+    const [isLiked, setIsLiked] = useState(isFound);
+
+    function handleFavorite({trackId, token}){
+      console.log(token)
+      addFavoriteTrack(trackId, token)
+    }
+
+    function handleUnlike({trackId, token}){
+      removeFavoriteTracks(trackId, token)
+    }
   
   return (
     <>
@@ -123,7 +151,7 @@ function Bar({loading, currentTrack}) {
                   previousTrack()
                   }}>
                   <S.BarBtnPrevSvg alt="prev">
-                    <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
+                    <use xlinkHref="/img/icon/sprite.svg#icon-prev"></use>
                   </S.BarBtnPrevSvg>
                 </S.BarPlayerBtnPrev>
                 {
@@ -145,7 +173,7 @@ function Bar({loading, currentTrack}) {
                     dispatch(setIsPlaying(true))}
                     }>
                   <S.BarPlayerBtnPlaySvg alt="play">
-                    <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+                    <use xlinkHref="/img/icon/sprite.svg#icon-play"></use>
                   </S.BarPlayerBtnPlaySvg>
                 </S.BarPlayerBtnPlay> 
                 }
@@ -153,20 +181,20 @@ function Bar({loading, currentTrack}) {
                   nextTrack()
                 }}>
                   <S.BarPlayerBtnNextSvg alt="next">
-                    <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
+                    <use xlinkHref="/img/icon/sprite.svg#icon-next"></use>
                   </S.BarPlayerBtnNextSvg>
                 </S.BarPlayerBtnNext>
                 {isRepeat ?
                     <S.PlayerBtnRepeat onClick={handleRepeat}>
                       <S.PlayerBtnRepeatActiveSvg alt="repeat">
-                        <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                        <use xlinkHref="/img/icon/sprite.svg#icon-repeat"></use>
                       </S.PlayerBtnRepeatActiveSvg>
                     </S.PlayerBtnRepeat>
 
                     :
                     <S.PlayerBtnRepeat onClick={handleRepeat}>
                       <S.PlayerBtnRepeatSvg alt="repeat">
-                        <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                        <use xlinkHref="/img/icon/sprite.svg#icon-repeat"></use>
                       </S.PlayerBtnRepeatSvg>
                     </S.PlayerBtnRepeat>
                   }
@@ -174,13 +202,13 @@ function Bar({loading, currentTrack}) {
                   isShuffle ?
                     <S.BarPlayerBtnIconHover onClick={handleShuffle}>
                       <S.BarPlayerBtnShuffleActiveSvg alt="shuffle">
-                        <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
+                        <use xlinkHref="/img/icon/sprite.svg#icon-shuffle"></use>
                       </S.BarPlayerBtnShuffleActiveSvg>
                     </S.BarPlayerBtnIconHover>
                 :
                     <S.BarPlayerBtnIconHover onClick={handleShuffle}>
                       <S.BarPlayerBtnShuffleSvg alt="shuffle">
-                        <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
+                        <use xlinkHref="/img/icon/sprite.svg#icon-shuffle"></use>
                       </S.BarPlayerBtnShuffleSvg>
                     </S.BarPlayerBtnIconHover>
                 }
@@ -191,7 +219,7 @@ function Bar({loading, currentTrack}) {
                 <S.TrackPlayerContain>
                   <S.TrackPlayImg>
                     <S.TrackPlaySvg alt="music">
-                      <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                      <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
                     </S.TrackPlaySvg>
                   </S.TrackPlayImg>
                   <S.TrackPlayerAuthor>
@@ -230,13 +258,27 @@ function Bar({loading, currentTrack}) {
 
                 <S.TrackPlayLikeDis>
                   <S.TrackPlayLike>
-                    <S.TrackPlayLikeSvg alt="like">
-                      <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                    </S.TrackPlayLikeSvg>
+                  {
+                    isLiked ? (
+                      <S.TrackTimeSvg alt="time" onClick={() => {
+                        setIsLiked(false)
+                        handleUnlike({trackId: currentTrack.id, token})
+                        }}>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                      </S.TrackTimeSvg>
+                    ) : (
+                      <S.TrackTimeSvg alt="time" onClick={() => {
+                        setIsLiked(true)
+                        handleFavorite({trackId: currentTrack.id, token})
+                        }}>
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                      </S.TrackTimeSvg>
+                    )
+                  }
                   </S.TrackPlayLike>
                   <S.TrackPlayDislike>
                     <S.TrackPlayDisLikeSvg alt="dislike">
-                      <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
+                      <use xlinkHref="/img/icon/sprite.svg#icon-dislike"></use>
                     </S.TrackPlayDisLikeSvg>
                   </S.TrackPlayDislike>
                 </S.TrackPlayLikeDis>
@@ -246,7 +288,7 @@ function Bar({loading, currentTrack}) {
               <S.VolumeContent>
                 <S.VolumeImage>
                   <S.VolumeSvg alt="volume">
-                    <use xlinkHref="img/icon/volume#icon-volume"></use>
+                    <use xlinkHref="/img/icon/volume#icon-volume"></use>
                   </S.VolumeSvg>
                 </S.VolumeImage>
                 <S.VolumeProgress>

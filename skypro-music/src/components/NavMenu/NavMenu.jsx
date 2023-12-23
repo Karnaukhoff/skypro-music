@@ -22,7 +22,7 @@ function NavMenu() {
   return (
     <S.mainNav>
       <S.navLogo>
-        <S.logoImage src="img/logo.png" alt="logo" />
+        <S.logoImage src="/img/logo.png" alt="logo" />
       </S.navLogo>
       <S.navBurger onClick={toggleVisibility}>
         <S.burgerLine></S.burgerLine>

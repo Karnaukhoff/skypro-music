@@ -1,10 +1,10 @@
 import 'react-loading-skeleton/dist/skeleton.css';
 import * as S from "./Track.styled"
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentTrackRedux } from "../../store/slices/trackSlice";
-import { useState } from "react";
+import { favoritesRedux, setCurrentTrackRedux } from "../../store/slices/trackSlice";
+import { useEffect, useState } from "react";
 import React from "react";
-import { addFavoriteTrack, removeFavoriteTracks } from "../../api/api";
+import { addFavoriteTrack, getFavoriteTracks, removeFavoriteTracks } from "../../api/api";
 
 export default function Track({item}) {
     const dispatch = useDispatch()
@@ -27,7 +27,7 @@ export default function Track({item}) {
     }
 
     const [isLiked, setIsLiked] = useState(isFound);
-  
+
     function time(sec){
       if (sec%60 >= 10){return `${Math.floor(sec/60)}.${sec%60}`}
       else {return `${Math.floor(sec/60)}.0${sec%60}`}
@@ -36,11 +36,30 @@ export default function Track({item}) {
     function handleFavorite({trackId, token}){
       console.log(token)
       addFavoriteTrack(trackId, token)
+      /*( async () => {const tracks = await getFavoriteTracks(token)
+        console.log(tracks)
+        dispatch(favoritesRedux(tracks))
+      })()*/
     }
 
     function handleUnlike({trackId, token}){
       removeFavoriteTracks(trackId, token)
+      /*( async () => {const tracks = await getFavoriteTracks(token)
+        console.log(tracks)
+        dispatch(favoritesRedux(tracks))
+      })()*/
     }
+
+    /*useEffect(() => {
+      // eslint-disable-next-line
+      favoriteTracks.some(element => {
+        if (element.id === item.id) {
+          setIsLiked(true);
+        } else {setIsLiked(false)}
+        
+      })
+      // eslint-disable-next-line
+    }, [favoriteTracks])*/
   
     return (
     <S.PlaylistItem>
@@ -51,7 +70,7 @@ export default function Track({item}) {
               <S.PointPlaying $playing={isPlaying} />
             ) : (
               <S.TrackTitleSvg alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
               </S.TrackTitleSvg>
             )}
               
@@ -101,7 +120,7 @@ export default function Track({item}) {
                 setIsLiked(true)
                 handleFavorite({trackId: item.id, token})
                 }}>
-                <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
               </S.TrackTimeSvg>
             )
           }

@@ -364,3 +364,10 @@ export const StyledProgressInput = styled.input`
     height: var(--progress-height);
   }
 `;
+export const TrackTimeSvg = styled.svg`
+  width: 14px;
+  height: 12px;
+  margin-right: 17px;
+  fill: transparent;
+  stroke: #696969;
+`
