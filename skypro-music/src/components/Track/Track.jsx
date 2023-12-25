@@ -25,6 +25,12 @@ export default function Track({item}) {
     catch {
       window.location.href="/login"
     }
+    
+    useEffect(() => {
+      // eslint-disable-next-line
+      setIsLiked(isFound)
+      // eslint-disable-next-line
+    }, [favoriteTracks])
 
     const [isLiked, setIsLiked] = useState(isFound);
 
@@ -33,26 +39,24 @@ export default function Track({item}) {
       else {return `${Math.floor(sec/60)}.0${sec%60}`}
     }
 
-    function handleFavorite({trackId, token}){
+    async function handleFavorite({trackId, token}){
       console.log(token)
-      addFavoriteTrack(trackId, token)
-    }
-
-    function handleUnlike({trackId, token}){
-      removeFavoriteTracks(trackId, token)
-    }
-
-    useEffect(() => {
-      // eslint-disable-next-line
-      favoriteTracks.some(element => {
-        if (element.id === item.id) {
-          setIsLiked(true)
-        } 
-    
-        else setIsLiked(false);
+      await addFavoriteTrack(trackId, token).then(() => {
+        getFavoriteTracks(token).then((tracks) => {
+          console.log(tracks)
+          dispatch(favoritesRedux(tracks))
+        })
       })
-      // eslint-disable-next-line
-    }, [favoriteTracks])
+    }
+
+    async function handleUnlike({trackId, token}){
+      await removeFavoriteTracks(trackId, token).then(() => {
+        getFavoriteTracks(token).then((tracks) => {
+          console.log(tracks)
+          dispatch(favoritesRedux(tracks))
+        })
+      })
+    }
   
     return (
     <S.PlaylistItem>

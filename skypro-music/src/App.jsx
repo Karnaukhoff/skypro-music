@@ -19,6 +19,7 @@ function App() {
   const [loading, setloading] = useState(false);
   const [tracksError, setTracksError] = useState(null);
   const [isPlaylist, setPlaylist] = useState();
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     async function Tracks() {
@@ -40,7 +41,7 @@ function App() {
 
   return (
     <>
-      <Context.Provider value={{ user, setUser, loading, tracks, tracksError, isPlaylist, setPlaylist, setTracksError, setloading, setTracks }}>
+      <Context.Provider value={{ user, setUser, loading, tracks, tracksError, isPlaylist, setPlaylist, setTracksError, setloading, setTracks, isLiked, setIsLiked }}>
         <GlobalStyle />
         <AppRoutes />
       </Context.Provider>

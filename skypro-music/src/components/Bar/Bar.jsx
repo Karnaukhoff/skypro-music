@@ -7,10 +7,10 @@ import { favoritesRedux, setCurrentTrackRedux, setIsPlaying } from "../../store/
 import Context from "../../context"
 import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavoriteTrack, getAllTracks, getFavoriteTracks, removeFavoriteTracks } from "../../api/api";
+import { addFavoriteTrack, getFavoriteTracks, removeFavoriteTracks } from "../../api/api";
 
 function Bar({loading, currentTrack}) {
-  const { isPlaylist, setTracks } = useContext(Context)
+  const { isPlaylist } = useContext(Context)
   const [isPlaying, setPlaying] = useState(false);
   const dispatch = useDispatch()
   const [isRepeat, setIsRepeat] = useState(false);
@@ -113,6 +113,11 @@ function Bar({loading, currentTrack}) {
       window.location.href="/login"
     }
 
+    useEffect(() => {
+      setIsLiked(isFound)
+      // eslint-disable-next-line
+    }, [currentTrack])
+
     const [isLiked, setIsLiked] = useState(isFound);
 
     async function handleFavorite({trackId, token}){
@@ -125,8 +130,13 @@ function Bar({loading, currentTrack}) {
       
     }
 
-    function handleUnlike({trackId, token}){
-      removeFavoriteTracks(trackId, token)
+    async function handleUnlike({trackId, token}){
+      await removeFavoriteTracks(trackId, token).then(() => {
+        getFavoriteTracks(token).then((tracks) => {
+          console.log(tracks)
+          dispatch(favoritesRedux(tracks))
+        })
+      })
     }
   
   return (
