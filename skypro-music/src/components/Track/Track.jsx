@@ -36,30 +36,23 @@ export default function Track({item}) {
     function handleFavorite({trackId, token}){
       console.log(token)
       addFavoriteTrack(trackId, token)
-      /*( async () => {const tracks = await getFavoriteTracks(token)
-        console.log(tracks)
-        dispatch(favoritesRedux(tracks))
-      })()*/
     }
 
     function handleUnlike({trackId, token}){
       removeFavoriteTracks(trackId, token)
-      /*( async () => {const tracks = await getFavoriteTracks(token)
-        console.log(tracks)
-        dispatch(favoritesRedux(tracks))
-      })()*/
     }
 
-    /*useEffect(() => {
+    useEffect(() => {
       // eslint-disable-next-line
       favoriteTracks.some(element => {
         if (element.id === item.id) {
-          setIsLiked(true);
-        } else {setIsLiked(false)}
-        
+          setIsLiked(true)
+        } 
+    
+        else setIsLiked(false);
       })
       // eslint-disable-next-line
-    }, [favoriteTracks])*/
+    }, [favoriteTracks])
   
     return (
     <S.PlaylistItem>

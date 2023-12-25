@@ -40,7 +40,7 @@ function App() {
 
   return (
     <>
-      <Context.Provider value={{ user, setUser, loading, tracks, tracksError, isPlaylist, setPlaylist, setTracksError, setloading }}>
+      <Context.Provider value={{ user, setUser, loading, tracks, tracksError, isPlaylist, setPlaylist, setTracksError, setloading, setTracks }}>
         <GlobalStyle />
         <AppRoutes />
       </Context.Provider>

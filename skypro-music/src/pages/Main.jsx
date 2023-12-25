@@ -14,6 +14,7 @@ import { setAccess, setRefresh, setUserData } from "../store/slices/authSlice";
 export const Main = () => {
   const { loading, tracks, tracksError, setPlaylist } = useContext(Context);
   const songs = useSelector((state) => state.playlist.tracks);
+  //const favorites = useSelector((state) => state.playlist.favorites);
   const dispatch = useDispatch();
   useEffect(() => {
     if (tracks.length) {

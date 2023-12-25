@@ -3,14 +3,14 @@ import * as S from "./Bar.styles";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useRef, useState, useEffect } from "react";
-import { setCurrentTrackRedux, setIsPlaying } from "../../store/slices/trackSlice";
+import { favoritesRedux, setCurrentTrackRedux, setIsPlaying } from "../../store/slices/trackSlice";
 import Context from "../../context"
 import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavoriteTrack, removeFavoriteTracks } from "../../api/api";
+import { addFavoriteTrack, getAllTracks, getFavoriteTracks, removeFavoriteTracks } from "../../api/api";
 
 function Bar({loading, currentTrack}) {
-  const { isPlaylist } = useContext(Context)
+  const { isPlaylist, setTracks } = useContext(Context)
   const [isPlaying, setPlaying] = useState(false);
   const dispatch = useDispatch()
   const [isRepeat, setIsRepeat] = useState(false);
@@ -115,9 +115,14 @@ function Bar({loading, currentTrack}) {
 
     const [isLiked, setIsLiked] = useState(isFound);
 
-    function handleFavorite({trackId, token}){
-      console.log(token)
-      addFavoriteTrack(trackId, token)
+    async function handleFavorite({trackId, token}){
+      await addFavoriteTrack(trackId, token).then(() => {
+        getFavoriteTracks(token).then((tracks) => {
+          console.log(tracks)
+          dispatch(favoritesRedux(tracks))
+        })
+      })
+      
     }
 
     function handleUnlike({trackId, token}){
