@@ -7,6 +7,7 @@ const initialState = {
     catalog_1: [],
     catalog_2: [],
     catalog_3: [],
+    search: "",
 }
 
 export const trackSlice = createSlice({
@@ -34,8 +35,11 @@ export const trackSlice = createSlice({
         catalogRock: (state, action) => {
             state.catalog_3 = action.payload
         },
+        setSearch: (state, action) => {
+            state.search = action.payload
+        },
     }
 })
 
-export const {setCurrentTrackRedux, setIsPlaying, tracksRedux, favoritesRedux, catalogClassic, catalogElectro, catalogRock } = trackSlice.actions
+export const {setCurrentTrackRedux, setIsPlaying, tracksRedux, favoritesRedux, catalogClassic, catalogElectro, catalogRock, setSearch } = trackSlice.actions
 export default trackSlice.reducer

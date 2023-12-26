@@ -15,11 +15,14 @@ export const Main = () => {
   const { loading, tracks, tracksError, setPlaylist } = useContext(Context);
   const songs = useSelector((state) => state.playlist.tracks);
   const favorites = useSelector((state) => state.playlist.favorites);
+  const search = useSelector((state) => state.playlist.search);
   const dispatch = useDispatch();
   useEffect(() => {
     if (tracks.length) {
-      dispatch(tracksRedux(tracks))
-      setPlaylist(tracks)
+      if (search.search.toString() === 'function search() { [native code] }' || search.search === ""){
+        dispatch(tracksRedux(tracks))
+        setPlaylist(tracks)
+      }
     };
     // eslint-disable-next-line
   }, [dispatch, tracks, favorites]);

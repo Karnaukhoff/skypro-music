@@ -14,12 +14,38 @@ import { tracksRedux } from "../store/slices/trackSlice";
 import { Outlet } from "react-router-dom";
 
 export const Layout = () => {
-  const { user, setUser, loading, tracks } = useContext(Context);
+  const { user, setUser, loading, tracks, setPlaylist, isPlaylist } = useContext(Context);
   const currentTrack = useSelector((state) => state.playlist.currentTrack);
+  const search = useSelector((state) => state.playlist.search);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (tracks.length) dispatch(tracksRedux(tracks));
   }, [dispatch, tracks]);
+
+  useEffect(() => {
+    const tracksArray = []
+      setPlaylist(tracks)
+
+      console.log(isPlaylist)
+    // eslint-disable-next-line
+    tracks.some(track => {
+      if (track.name.toLocaleLowerCase().includes(search.search.toString().toLocaleLowerCase())
+      || track.album.toLocaleLowerCase().includes(search.search.toString().toLocaleLowerCase())
+    || track.author.toLocaleLowerCase().includes(search.search.toString().toLocaleLowerCase())){
+      tracksArray.push(track)
+      setPlaylist(tracksArray)
+    }
+    else if (search.search.length === 0){
+      setPlaylist(tracks)
+    }
+    })
+    if (search.search.toString() !== 'function search() { [native code] }'){
+      dispatch(tracksRedux(tracksArray))
+      console.log(search.search.length, search.search.toString())
+    }
+    // eslint-disable-next-line
+  }, [search.search])
 
   return (
     <S.wrapper>

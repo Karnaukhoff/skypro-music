@@ -1,7 +1,10 @@
 import React from "react";
 import * as S from "./Search.styles"
+import { useDispatch } from 'react-redux'
+import { setSearch } from "../../store/slices/trackSlice";
 
 function Search() {
+  const dispatch = useDispatch()
   return (
     <S.centroblockSearch>
       <S.searchSvg>
@@ -11,6 +14,13 @@ function Search() {
         type="search"
         placeholder="Поиск"
         name="search"
+        onChange={(e) => {
+          dispatch(
+            setSearch({
+              search: e.target.value,
+            })
+          )
+        }}
       />
     </S.centroblockSearch>
   );
