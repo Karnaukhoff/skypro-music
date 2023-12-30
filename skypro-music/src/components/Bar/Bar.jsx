@@ -62,7 +62,7 @@ function Bar({loading, currentTrack}) {
 
   function whatIsTrack(){
     for(let i = 0; i <= isPlaylist.length - 1; i++){
-      if (isPlaylist[i] === currentTrack){
+      if (isPlaylist[i].id === currentTrack.id){
         return i
       }
     }

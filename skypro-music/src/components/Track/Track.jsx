@@ -43,7 +43,6 @@ export default function Track({item}) {
       console.log(token)
       await addFavoriteTrack(trackId, token).then(() => {
         getFavoriteTracks(token).then((tracks) => {
-          console.log(tracks)
           dispatch(favoritesRedux(tracks))
         })
       })
@@ -52,7 +51,6 @@ export default function Track({item}) {
     async function handleUnlike({trackId, token}){
       await removeFavoriteTracks(trackId, token).then(() => {
         getFavoriteTracks(token).then((tracks) => {
-          console.log(tracks)
           dispatch(favoritesRedux(tracks))
         })
       })

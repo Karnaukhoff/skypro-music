@@ -14,7 +14,7 @@ import { tracksRedux } from "../store/slices/trackSlice";
 import { Outlet } from "react-router-dom";
 
 export const Layout = () => {
-  const { user, setUser, loading, tracks, setPlaylist, isPlaylist } = useContext(Context);
+  const { user, setUser, loading, tracks, setPlaylist } = useContext(Context);
   const currentTrack = useSelector((state) => state.playlist.currentTrack);
   const search = useSelector((state) => state.playlist.search);
   const dispatch = useDispatch();
@@ -25,9 +25,6 @@ export const Layout = () => {
 
   useEffect(() => {
     const tracksArray = []
-      setPlaylist(tracks)
-
-      console.log(isPlaylist)
     // eslint-disable-next-line
     tracks.some(track => {
       if (track.name.toLocaleLowerCase().includes(search.search.toString().toLocaleLowerCase())

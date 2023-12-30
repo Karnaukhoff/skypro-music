@@ -1,11 +1,27 @@
 import React from "react";
 import * as S from "./Filter.styles"
+import { useContext } from "react";
+import Context from "../../context";
+import { useDispatch } from "react-redux";
+import { setSort } from "../../store/slices/trackSlice";
 const { useState } = React;
 
 function FilterList(activeFilter) {
-    let authors = ["Nero", "Calvin Harris", "OG Buda", "PHARAOH", "Скриптонит", "Баста"]
-    let years = [1997, 1999, 2007, 2015, 2021, 2023]
-    let genres = ["Хип-хоп", "Рок", "Поп", "Классика", "Детская"]
+  const dispatch = useDispatch();
+    const { tracks } = useContext(Context);
+    let authors = []
+    let years = ['По умолчанию', 'Сначала новые', 'Сначала старые']
+    let genres = []
+
+    // eslint-disable-next-line
+    tracks.some(track => {
+      if (authors.indexOf(track.author) === -1){
+        authors.push(track.author)
+      }
+      if (genres.indexOf(track.genre) === -1){
+        genres.push(track.genre)
+      }
+    })
     
     let filter = []
 
@@ -19,7 +35,13 @@ function FilterList(activeFilter) {
             {
                 filter.map((i) => {
                     return(
-                        <S.modalContentText href="#">
+                        <S.modalContentText onClick={() => {
+                          dispatch(setSort(i))
+                          //нажатие на фильтр
+                          //-закрашивание выбранного(раскрашивание)
+                          //-диспач
+                          //-количество выбранных
+                        }}>
                             {i}
                         </S.modalContentText>
                     )

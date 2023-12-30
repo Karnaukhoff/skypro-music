@@ -16,16 +16,60 @@ export const Main = () => {
   const songs = useSelector((state) => state.playlist.tracks);
   const favorites = useSelector((state) => state.playlist.favorites);
   const search = useSelector((state) => state.playlist.search);
+  const sort = useSelector((state) => state.playlist.sort)
   const dispatch = useDispatch();
+
+  function sortTracks(sortValue){
+    let tracklist = songs
+    
+    var mapped = tracklist.map(function (el, i) {
+      return { index: i, value: el };
+    });
+    
+    // сортируем массив, содержащий уменьшенные значения
+    mapped.sort(function (a, b) {
+      if (a.value.release_date > b.value.release_date) {
+        return 1;
+      }
+      if (a.value.release_date < b.value.release_date) {
+        return -1;
+      }
+      return 0;
+    });
+    
+    // контейнер для результа
+    var result = mapped.map(function (el) {
+      return tracklist[el.index];
+    });
+    
+    if (sortValue === "Сначала новые"){
+      return result.reverse()
+    } else if (sortValue === "Сначала старые"){
+      return result
+    } else {return tracks}
+  }
+
   useEffect(() => {
     if (tracks.length) {
       if (search.search.toString() === 'function search() { [native code] }' || search.search === ""){
         dispatch(tracksRedux(tracks))
-        setPlaylist(tracks)
+        setPlaylist(songs)
       }
     };
     // eslint-disable-next-line
   }, [dispatch, tracks, favorites]);
+
+  useEffect(() => {
+    if (sort === "Сначала новые" || sort === "Сначала старые"){
+      dispatch(tracksRedux(sortTracks(sort)))
+      setPlaylist(sortTracks(sort))
+    } else {
+      dispatch(tracksRedux(tracks))
+      setPlaylist(tracks)
+    }
+    console.log(sort)
+    // eslint-disable-next-line
+  }, [sort])
 
   useEffect(() => {
     if (localStorage.getItem("authData") !== null) {

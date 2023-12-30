@@ -8,6 +8,9 @@ const initialState = {
     catalog_2: [],
     catalog_3: [],
     search: "",
+    sort: "",
+    authorFilter: [],
+    genreFilter: [],
 }
 
 export const trackSlice = createSlice({
@@ -38,8 +41,18 @@ export const trackSlice = createSlice({
         setSearch: (state, action) => {
             state.search = action.payload
         },
+        setSort: (state, action) => {
+            state.sort = action.payload
+        },
+        setAuthorFilter: (state, action) => {
+            state.authorFilter = action.payload
+        },
+        setGenreFilter: (state, action) => {
+            state.genreFilter = action.payload
+        },
     }
 })
 
-export const {setCurrentTrackRedux, setIsPlaying, tracksRedux, favoritesRedux, catalogClassic, catalogElectro, catalogRock, setSearch } = trackSlice.actions
+export const {setCurrentTrackRedux, setIsPlaying, tracksRedux, favoritesRedux, catalogClassic, catalogElectro, 
+    catalogRock, setSearch, setSort, setAuthorFilter, setGenreFilter } = trackSlice.actions
 export default trackSlice.reducer

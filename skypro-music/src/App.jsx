@@ -14,7 +14,6 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   const [user, setUser] = useState(localStorage.getItem("user") || null);
-  console.log(user)
   const [tracks, setTracks] = useState([]);
   const [loading, setloading] = useState(false);
   const [tracksError, setTracksError] = useState(null);
@@ -28,6 +27,7 @@ function App() {
         setTracksError(null);
         await getAllTracks().then((tracks) => {
           setTracks(tracks);
+          setPlaylist(tracks)
           console.log(tracks)
         });
       } catch (error) {
