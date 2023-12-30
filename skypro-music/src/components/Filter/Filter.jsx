@@ -6,9 +6,13 @@ import { useDispatch } from "react-redux";
 import { setSort } from "../../store/slices/trackSlice";
 const { useState } = React;
 
+let localAuthorFilter = []
+let localGenreFilter = []
+
 function FilterList(activeFilter) {
   const dispatch = useDispatch();
-    const { tracks } = useContext(Context);
+    const { tracks, setAuthorFilter, setGenreFilter } = useContext(Context);
+
     let authors = []
     let years = ['По умолчанию', 'Сначала новые', 'Сначала старые']
     let genres = []
@@ -39,8 +43,30 @@ function FilterList(activeFilter) {
                           if (i === "Сначала новые" || i === "Сначала старые" || i === "По умолчанию"){
                             dispatch(setSort(i))
                           }
-                          else if (activeFilter === "author"){alert(`author = ${i}`)}
-                          else if (activeFilter === "genre"){alert(`genre = ${i}`)}
+                          else if (activeFilter === "author"){
+                            if (localAuthorFilter.includes(i)){
+                              let arr = localAuthorFilter.filter((a) => a !== i)
+                              localAuthorFilter = arr
+                              setAuthorFilter(localAuthorFilter)
+                              console.log(localAuthorFilter)
+                            } else {
+                              localAuthorFilter.push(i)
+                              setAuthorFilter(localAuthorFilter)
+                              console.log(localAuthorFilter)
+                            }
+                          }
+                          else if (activeFilter === "genre"){
+                            if (localGenreFilter.includes(i)){
+                              let arr = localGenreFilter.filter((a) => a !== i)
+                              localGenreFilter = arr
+                              setGenreFilter(localGenreFilter)
+                              console.log(localGenreFilter)
+                            } else {
+                              localGenreFilter.push(i)
+                              setGenreFilter(localGenreFilter)
+                              console.log(localGenreFilter)
+                            }
+                          }
                           //нажатие на фильтр
                           //-закрашивание выбранного(раскрашивание)
                           //-диспач

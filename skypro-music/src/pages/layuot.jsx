@@ -14,7 +14,7 @@ import { tracksRedux } from "../store/slices/trackSlice";
 import { Outlet } from "react-router-dom";
 
 export const Layout = () => {
-  const { user, setUser, loading, tracks, setPlaylist } = useContext(Context);
+  const { user, setUser, loading, tracks, setPlaylist, authorFilter, genreFilter } = useContext(Context);
   const currentTrack = useSelector((state) => state.playlist.currentTrack);
   const search = useSelector((state) => state.playlist.search);
   const sort = useSelector((state) => state.playlist.sort)
@@ -56,22 +56,33 @@ export const Layout = () => {
     const tracksArray = []
     // eslint-disable-next-line
     sortTracks(sort).some(track => {
-      if (track.name.toLocaleLowerCase().includes(search.search.toString().toLocaleLowerCase())
-      || track.album.toLocaleLowerCase().includes(search.search.toString().toLocaleLowerCase())
-    || track.author.toLocaleLowerCase().includes(search.search.toString().toLocaleLowerCase())){
+      if ((
+            track.name.toLocaleLowerCase().includes(search.search.toString().toLocaleLowerCase())
+          || track.album.toLocaleLowerCase().includes(search.search.toString().toLocaleLowerCase())
+          || track.author.toLocaleLowerCase().includes(search.search.toString().toLocaleLowerCase())
+          || (authorFilter.length !== 0 || genreFilter.length !== 0)
+          ) 
+        &&
+          (
+            (authorFilter.length === 0 || authorFilter.includes(track.author))
+          && (genreFilter.length === 0 || genreFilter.includes(track.genre))
+          )
+      ){
       tracksArray.push(track)
       setPlaylist(tracksArray)
+      console.log(authorFilter, genreFilter)
     }
     else if (search.search.length === 0){
       setPlaylist(sortTracks(sort))
     }
     })
-    if (search.search.toString() !== 'function search() { [native code] }'){
+    if (search.search.toString() !== 'function search() { [native code] }' || authorFilter.length !== 0 || genreFilter.length !== 0){
       dispatch(tracksRedux(tracksArray))
-      console.log(search.search.length, search.search.toString())
+      console.log(sortTracks(sort))
     }
+    console.log(search.search, authorFilter, genreFilter)
     // eslint-disable-next-line
-  }, [search.search])
+  }, [dispatch, search.search, authorFilter, genreFilter])
 
   return (
     <S.wrapper>
