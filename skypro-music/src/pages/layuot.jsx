@@ -17,16 +17,45 @@ export const Layout = () => {
   const { user, setUser, loading, tracks, setPlaylist } = useContext(Context);
   const currentTrack = useSelector((state) => state.playlist.currentTrack);
   const search = useSelector((state) => state.playlist.search);
+  const sort = useSelector((state) => state.playlist.sort)
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (tracks.length) dispatch(tracksRedux(tracks));
-  }, [dispatch, tracks]);
+  function sortTracks(sortValue){
+    let tracklist = tracks
+    
+    var mapped = tracklist.map(function (el, i) {
+      return { index: i, value: el };
+    });
+    
+    // сортируем массив, содержащий уменьшенные значения
+    mapped.sort(function (a, b) {
+      if (a.value.release_date > b.value.release_date) {
+        return 1;
+      }
+      if (a.value.release_date < b.value.release_date) {
+        return -1;
+      }
+      return 0;
+    });
+    
+    // контейнер для результа
+    var result = mapped.map(function (el) {
+      return tracklist[el.index];
+    });
+    
+    if (sortValue === "Сначала новые"){
+      return result.reverse()
+    } else if (sortValue === "Сначала старые"){
+      return result
+    } else {
+      return tracks
+    }
+  }
 
   useEffect(() => {
     const tracksArray = []
     // eslint-disable-next-line
-    tracks.some(track => {
+    sortTracks(sort).some(track => {
       if (track.name.toLocaleLowerCase().includes(search.search.toString().toLocaleLowerCase())
       || track.album.toLocaleLowerCase().includes(search.search.toString().toLocaleLowerCase())
     || track.author.toLocaleLowerCase().includes(search.search.toString().toLocaleLowerCase())){
@@ -34,7 +63,7 @@ export const Layout = () => {
       setPlaylist(tracksArray)
     }
     else if (search.search.length === 0){
-      setPlaylist(tracks)
+      setPlaylist(sortTracks(sort))
     }
     })
     if (search.search.toString() !== 'function search() { [native code] }'){

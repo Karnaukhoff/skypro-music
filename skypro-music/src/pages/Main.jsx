@@ -46,7 +46,9 @@ export const Main = () => {
       return result.reverse()
     } else if (sortValue === "Сначала старые"){
       return result
-    } else {return tracks}
+    } else {
+      return tracks
+    }
   }
 
   useEffect(() => {
@@ -67,7 +69,6 @@ export const Main = () => {
       dispatch(tracksRedux(tracks))
       setPlaylist(tracks)
     }
-    console.log(sort)
     // eslint-disable-next-line
   }, [sort])
 

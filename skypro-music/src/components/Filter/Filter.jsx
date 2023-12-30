@@ -36,7 +36,11 @@ function FilterList(activeFilter) {
                 filter.map((i) => {
                     return(
                         <S.modalContentText onClick={() => {
-                          dispatch(setSort(i))
+                          if (i === "Сначала новые" || i === "Сначала старые" || i === "По умолчанию"){
+                            dispatch(setSort(i))
+                          }
+                          else if (activeFilter === "author"){alert(`author = ${i}`)}
+                          else if (activeFilter === "genre"){alert(`genre = ${i}`)}
                           //нажатие на фильтр
                           //-закрашивание выбранного(раскрашивание)
                           //-диспач

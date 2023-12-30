@@ -87,7 +87,7 @@ function Bar({loading, currentTrack}) {
       dispatch(setCurrentTrackRedux(isPlaylist[Math.floor(Math.random() * isPlaylist.length)]))
     }
     else if (index !== 0 && currentTime <= 4){
-      dispatch(setCurrentTrackRedux(isPlaying[index - 1]))
+      dispatch(setCurrentTrackRedux(isPlaylist[index - 1]))
     }
   }
 
