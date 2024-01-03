@@ -11,7 +11,7 @@ let localGenreFilter = []
 
 function FilterList(activeFilter) {
   const dispatch = useDispatch();
-    const { tracks, setAuthorFilter, setGenreFilter } = useContext(Context);
+    const { tracks, setAuthorFilter, setGenreFilter, authorFilter, genreFilter } = useContext(Context);
 
     let authors = []
     let years = ['По умолчанию', 'Сначала новые', 'Сначала старые']
@@ -47,30 +47,24 @@ function FilterList(activeFilter) {
                             if (localAuthorFilter.includes(i)){
                               let arr = localAuthorFilter.filter((a) => a !== i)
                               localAuthorFilter = arr
-                              setAuthorFilter(localAuthorFilter)
-                              console.log(localAuthorFilter)
                             } else {
                               localAuthorFilter.push(i)
-                              setAuthorFilter(localAuthorFilter)
-                              console.log(localAuthorFilter)
                             }
+                            setAuthorFilter(localAuthorFilter.toString())
+                            console.log("localAuthorFilter = ", localAuthorFilter)
+                            console.log("authorFilter = ", authorFilter)
                           }
                           else if (activeFilter === "genre"){
                             if (localGenreFilter.includes(i)){
                               let arr = localGenreFilter.filter((a) => a !== i)
                               localGenreFilter = arr
-                              setGenreFilter(localGenreFilter)
-                              console.log(localGenreFilter)
                             } else {
                               localGenreFilter.push(i)
-                              setGenreFilter(localGenreFilter)
-                              console.log(localGenreFilter)
                             }
+                            setGenreFilter(localGenreFilter)
+                            console.log("localAuthorFilter = ", localAuthorFilter)
+                            console.log("genreFilter = ", genreFilter)
                           }
-                          //нажатие на фильтр
-                          //-закрашивание выбранного(раскрашивание)
-                          //-диспач
-                          //-количество выбранных
                         }}>
                             {i}
                         </S.modalContentText>

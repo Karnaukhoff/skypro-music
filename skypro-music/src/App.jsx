@@ -19,8 +19,8 @@ function App() {
   const [tracksError, setTracksError] = useState(null);
   const [isPlaylist, setPlaylist] = useState();
   const [isLiked, setIsLiked] = useState(false);
-  const [authorFilter, setAuthorFilter] = useState([])
-  const [genreFilter, setGenreFilter] = useState([])
+  const [authorFilter, setAuthorFilter] = useState("")
+  const [genreFilter, setGenreFilter] = useState("")
 
   useEffect(() => {
     async function Tracks() {

@@ -60,12 +60,12 @@ export const Layout = () => {
             track.name.toLocaleLowerCase().includes(search.search.toString().toLocaleLowerCase())
           || track.album.toLocaleLowerCase().includes(search.search.toString().toLocaleLowerCase())
           || track.author.toLocaleLowerCase().includes(search.search.toString().toLocaleLowerCase())
-          || (authorFilter.length !== 0 || genreFilter.length !== 0)
+          || (authorFilter !== "" || genreFilter !== "")
           ) 
         &&
           (
-            (authorFilter.length === 0 || authorFilter.includes(track.author))
-          && (genreFilter.length === 0 || genreFilter.includes(track.genre))
+            (authorFilter === "" || authorFilter.includes(track.author))
+          && (genreFilter === "" || genreFilter.includes(track.genre))
           )
       ){
       tracksArray.push(track)
@@ -76,11 +76,10 @@ export const Layout = () => {
       setPlaylist(sortTracks(sort))
     }
     })
-    if (search.search.toString() !== 'function search() { [native code] }' || authorFilter.length !== 0 || genreFilter.length !== 0){
+    if (search.search.toString() !== 'function search() { [native code] }' || authorFilter !== "" || genreFilter !== ""){
       dispatch(tracksRedux(tracksArray))
       console.log(sortTracks(sort))
     }
-    console.log(search.search, authorFilter, genreFilter)
     // eslint-disable-next-line
   }, [dispatch, search.search, authorFilter, genreFilter])
 
