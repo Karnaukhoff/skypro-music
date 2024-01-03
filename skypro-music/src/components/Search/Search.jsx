@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./Search.styles"
 import { useDispatch } from 'react-redux'
-import { setSearch } from "../../store/slices/trackSlice";
+import { setFiltersPlaylist } from "../../store/slices/trackSlice";
 
 function Search() {
   const dispatch = useDispatch()
@@ -16,7 +16,7 @@ function Search() {
         name="search"
         onChange={(e) => {
           dispatch(
-            setSearch({
+            setFiltersPlaylist({
               search: e.target.value,
             })
           )
