@@ -1,10 +1,10 @@
 import 'react-loading-skeleton/dist/skeleton.css';
 import * as S from "./Track.styled"
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentTrackRedux } from "../../store/slices/trackSlice";
-import { useState } from "react";
+import { favoritesRedux, setCurrentTrackRedux } from "../../store/slices/trackSlice";
+import { useEffect, useState } from "react";
 import React from "react";
-import { addFavoriteTrack, removeFavoriteTracks } from "../../api/api";
+import { addFavoriteTrack, getFavoriteTracks, removeFavoriteTracks } from "../../api/api";
 
 export default function Track({item}) {
     const dispatch = useDispatch()
@@ -25,29 +25,35 @@ export default function Track({item}) {
     catch {
       window.location.href="/login"
     }
+    
+    useEffect(() => {
+      // eslint-disable-next-line
+      setIsLiked(isFound)
+      // eslint-disable-next-line
+    }, [favoriteTracks])
 
     const [isLiked, setIsLiked] = useState(isFound);
 
-    /*if (favoriteTracks.includes(item)){
-      setIsLiked(true)
-    } else {
-      setIsLiked(false)
-    }*/
-
-  
     function time(sec){
       if (sec%60 >= 10){return `${Math.floor(sec/60)}.${sec%60}`}
       else {return `${Math.floor(sec/60)}.0${sec%60}`}
     }
 
-    function handleFavorite({trackId, token}){
+    async function handleFavorite({trackId, token}){
       console.log(token)
-      addFavoriteTrack(trackId, token)
-      //добавить в redux
+      await addFavoriteTrack(trackId, token).then(() => {
+        getFavoriteTracks(token).then((tracks) => {
+          dispatch(favoritesRedux(tracks))
+        })
+      })
     }
 
-    function handleUnlike({trackId, token}){
-      removeFavoriteTracks(trackId, token)
+    async function handleUnlike({trackId, token}){
+      await removeFavoriteTracks(trackId, token).then(() => {
+        getFavoriteTracks(token).then((tracks) => {
+          dispatch(favoritesRedux(tracks))
+        })
+      })
     }
   
     return (
@@ -59,7 +65,7 @@ export default function Track({item}) {
               <S.PointPlaying $playing={isPlaying} />
             ) : (
               <S.TrackTitleSvg alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
               </S.TrackTitleSvg>
             )}
               
@@ -109,7 +115,7 @@ export default function Track({item}) {
                 setIsLiked(true)
                 handleFavorite({trackId: item.id, token})
                 }}>
-                <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
               </S.TrackTimeSvg>
             )
           }

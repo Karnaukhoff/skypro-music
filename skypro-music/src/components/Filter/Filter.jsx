@@ -1,67 +1,91 @@
 import React from "react";
 import * as S from "./Filter.styles"
+import uniq from 'lodash.uniq'
+import { useDispatch, useSelector } from 'react-redux'
+import { TracksFilterCategory } from "./TrackFilterCategory";
+import { setFiltersPlaylist } from "../../store/slices/trackSlice";
+import { filtersPlaylistSelector } from "../../store/selectors";
+import { useContext } from "react";
+import Context from "../../context";
+
 const { useState } = React;
 
-function FilterList(activeFilter) {
-    let authors = ["Nero", "Calvin Harris", "OG Buda", "PHARAOH", "Скриптонит", "Баста"]
-    let years = [1997, 1999, 2007, 2015, 2021, 2023]
-    let genres = ["Хип-хоп", "Рок", "Поп", "Классика", "Детская"]
-    
-    let filter = []
+export const Filter = () => {
+  const dispatch = useDispatch()
+  const [activeCategoryFilter, setActiveCategoryFilter] = useState('')
 
-    if (activeFilter === "author") {filter = authors}
-    if (activeFilter === "year") {filter = years}
-    if (activeFilter === "genre") {filter = genres}
+  const selectedFiltersPlaylist = useSelector(filtersPlaylistSelector)
+  const { tracks } = useContext(Context);
 
-    return (
-    <S.modal>
-        <S.modalContent>
-            {
-                filter.map((i) => {
-                    return(
-                        <S.modalContentText href="#">
-                            {i}
-                        </S.modalContentText>
-                    )
-                })
-            }
-        </S.modalContent>
-    </S.modal>
-    );
-  }
-
-  function Filter() {
-    const [activeFilter, setActiveFilter] = useState();
-    return (
-    <S.centroblockFilter>
+  return (
+    <S.CenterBlockFilter>
+      <S.filterDiv>
         <S.filterTitle>Искать по:</S.filterTitle>
-        <S.filterButton
-          onClick={() =>
-            activeFilter !== "author" ? setActiveFilter("author") : setActiveFilter()
+        <TracksFilterCategory
+          nameCategory="исполнителю"
+          numberSelectedValues={selectedFiltersPlaylist?.authors.length}
+          content={uniq(
+            tracks?.map((track) => track?.author)
+          ).map((author) => (
+            <S.FilterItem
+              key={author}
+              onClick={() => {
+                dispatch(setFiltersPlaylist({ authors: author }))
+              }}
+              $isSelected={selectedFiltersPlaylist?.authors.includes(author)}
+            >
+              {author}
+            </S.FilterItem>
+          ))}
+          isActiveCategory={activeCategoryFilter}
+          setActiveCategory={setActiveCategoryFilter}
+        />
+        {(
+          <TracksFilterCategory
+            nameCategory="жанру"
+            isActiveCategory={activeCategoryFilter}
+            setActiveCategory={setActiveCategoryFilter}
+            numberSelectedValues={selectedFiltersPlaylist?.genres.length}
+            content={uniq(
+              tracks?.map((track) => track.genre)
+            ).map((genre) => (
+              <S.FilterItem
+                key={genre}
+                onClick={() => {
+                  dispatch(setFiltersPlaylist({ genres: genre }))
+                }}
+                $isSelected={selectedFiltersPlaylist?.genres.includes(genre)}
+              >
+                {genre}
+              </S.FilterItem>
+            ))}
+          />
+        )}
+      </S.filterDiv>
+      <S.filterDiv>
+        <S.filterTitle>Сортировка:</S.filterTitle>
+        <TracksFilterCategory
+          nameCategory={selectedFiltersPlaylist?.sort}
+          isActiveCategory={activeCategoryFilter}
+          setActiveCategory={setActiveCategoryFilter}
+          numberSelectedValues={
+            selectedFiltersPlaylist?.sort === 'По умолчанию' ? 0 : 1
           }
-        >
-          исполнителю
-          {activeFilter === "author" && FilterList(activeFilter)}
-        </S.filterButton>
-  
-        <S.filterButton
-          onClick={() =>
-            activeFilter !== "year" ? setActiveFilter("year") : setActiveFilter()
-          }
-        >
-          году выпуска
-          {activeFilter === "year" && FilterList(activeFilter)}
-        </S.filterButton>
-  
-        <S.filterButton
-          onClick={() =>
-            activeFilter !== "genre" ? setActiveFilter("genre") : setActiveFilter()
-          }
-        >
-          жанру
-          {activeFilter === "genre" && FilterList(activeFilter)}
-        </S.filterButton>
-    </S.centroblockFilter>
-    );
-  }
-  export default Filter;
+          content={['По умолчанию', 'Сначала новые', 'Сначала старые'].map(
+            (item) => (
+              <S.FilterItem
+                key={item}
+                onClick={() => {
+                  dispatch(setFiltersPlaylist({ sort: item }))
+                }}
+                $isSelected={selectedFiltersPlaylist?.sort.includes(item)}
+              >
+                {item}
+              </S.FilterItem>
+            )
+          )}
+        />
+      </S.filterDiv>
+    </S.CenterBlockFilter>
+  )
+}

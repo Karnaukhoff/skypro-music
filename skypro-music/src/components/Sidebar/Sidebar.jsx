@@ -18,7 +18,7 @@ function Sidebar({loading}) {
         <S.SidebarPersonalName>{user}</S.SidebarPersonalName>
         <S.SidebarIcon onClick={logOut}>
           <svg alt="logout">
-            <use xlinkHref="img/icon/sprite.svg#logout"></use>
+            <use xlinkHref="/img/icon/sprite.svg#logout"></use>
           </svg>
         </S.SidebarIcon>
       </S.SidebarPersonal>
@@ -37,7 +37,7 @@ function Sidebar({loading}) {
                         <Link to={'/categorySongs/1'} style={
                           {width: "100%", height: "100%"}
                         }>
-                          <S.SidebarImg src="img/playlist01.png" alt="day's playlist" />
+                          <S.SidebarImg src="/img/classic_music.png" alt="day's playlist" />
                         </Link>
                       )
                   }
@@ -56,7 +56,7 @@ function Sidebar({loading}) {
                         <Link to={'/categorySongs/2'} style={
                           {width: "100%", height: "100%"}
                         }>
-                          <S.SidebarImg src="img/playlist02.png" alt="day's playlist" />
+                          <S.SidebarImg src="/img/electro_music.png" alt="day's playlist" />
                         </Link>
                       )
                   }
@@ -75,7 +75,7 @@ function Sidebar({loading}) {
                         <Link to={'/categorySongs/3'} style={
                           {width: "100%", height: "100%"}
                         }>
-                          <S.SidebarImg src="img/playlist03.png" alt="day's playlist" />
+                          <S.SidebarImg src="/img/rock_music.png" alt="day's playlist" />
                         </Link>
                       )
                   }

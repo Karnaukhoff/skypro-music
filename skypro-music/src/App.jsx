@@ -4,8 +4,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { getAllTracks } from "./api/api";
 import Context from "./context";
-//import { setUserData, setRefresh, setAccess } from "./store/slices/authSlice";
-//import {/* useDispatch,*/ useSelector } from "react-redux";
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -16,11 +14,11 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   const [user, setUser] = useState(localStorage.getItem("user") || null);
-  console.log(user)
   const [tracks, setTracks] = useState([]);
   const [loading, setloading] = useState(false);
   const [tracksError, setTracksError] = useState(null);
   const [isPlaylist, setPlaylist] = useState();
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     async function Tracks() {
@@ -29,6 +27,8 @@ function App() {
         setTracksError(null);
         await getAllTracks().then((tracks) => {
           setTracks(tracks);
+          setPlaylist(tracks)
+          console.log(tracks)
         });
       } catch (error) {
         setTracksError(error.message);
@@ -41,7 +41,7 @@ function App() {
 
   return (
     <>
-      <Context.Provider value={{ user, setUser, loading, tracks, tracksError, isPlaylist, setPlaylist }}>
+      <Context.Provider value={{ user, setUser, loading, tracks, tracksError, isPlaylist, setPlaylist, setTracksError, setloading, setTracks, isLiked, setIsLiked }}>
         <GlobalStyle />
         <AppRoutes />
       </Context.Provider>

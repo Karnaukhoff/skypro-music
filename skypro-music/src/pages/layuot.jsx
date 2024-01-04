@@ -1,5 +1,5 @@
 import * as S from "./styles/Main.styles";
-import React, { useEffect } from "react";
+import React from "react";
 
 import NavMenu from "../components/NavMenu/NavMenu";
 import Search from "../components/Search/Search";
@@ -9,17 +9,11 @@ import GlobalStyle from "./styles/Main.styles";
 import { useContext } from "react";
 import Context from "../context";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { tracksRedux } from "../store/slices/trackSlice";
 import { Outlet } from "react-router-dom";
 
 export const Layout = () => {
-  const { user, setUser, loading, tracks } = useContext(Context);
+  const { user, setUser, loading } = useContext(Context);
   const currentTrack = useSelector((state) => state.playlist.currentTrack);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (tracks.length) dispatch(tracksRedux(tracks));
-  }, [dispatch, tracks]);
 
   return (
     <S.wrapper>
